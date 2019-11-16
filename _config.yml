@@ -3,10 +3,10 @@
 #
 
 # Name of your site (displayed in the header)
-name: Your Username
+name: Jack Kennedy
 
 # Short bio or description (displayed in the header)
-description: Programmer From Somewhere On Earth
+description: PhD Statistics Candidate, Newcastle University
 
 
 #
@@ -16,12 +16,12 @@ description: Programmer From Somewhere On Earth
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: agarwal.akshay.akshay8@gmail.com
+  email: j.c.kennedy1@ncl.ac.uk
   facebook:
   flickr:
-  github: AkshayAgarwal007
+  github: jcken95
   instagram:
-  linkedin: akshay-agarwal-782018a4
+  linkedin: 
   pinterest:
   rss: # just type anything here for a working RSS icon
   twitter: 
@@ -35,7 +35,7 @@ footer-links:
 disqus:
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
+google_analytics: UA-152699572-1
 
 # Your website URL (e.g. http://akshayagarwal007.github.io)
 # Used for Sitemap.xml and your RSS feed
