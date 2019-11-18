@@ -3,53 +3,36 @@ layout: page
 title: About
 permalink: /about/
 ---
+I am currently a second year PhD student in Statistics at the School of Maths, Stats and Physics at Newcastle University. I am jointly supervised by [Dr Kevin Wilson](https://www.ncl.ac.uk/maths-physics/staff/profile/kevinwilson.html#background) and [Dr Daniel Henderson](http://www.mas.ncl.ac.uk/~ndah6/).
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet urna eu dolor placerat varius. Vivamus eros augue, consequat id scelerisque nec, fringilla in est. Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet urna eu dolor placerat varius. Vivamus eros augue, consequat id scelerisque nec, fringilla in est. Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula.  
+My research interests cover a broad range of statistical topics, with some crossover into machine learning. My primary interests are:
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet urna eu dolor placerat varius. Vivamus eros augue, consequat id scelerisque nec, fringilla in est. Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula. 
+* Elicitation and Subjectivism
+* Bayesian Emulation
+* Correlated Gaussian Processes
 
-Sed faucibus felis purus, sed convallis leo dictum vehicula.
+More generally, I am interested in the applied statistics and Bayesian modelling. My previous work has used machine learning and statistical methodology to produce fast product costing algorithms and product insights for Nissan Motor Corporation.
 
-## Education
+## CV
 
-* ABC degree from XYZ University.
-* ABC degree from XYZ University.
-* ABC degree from XYZ University.
-
-## Roles
-
-Founder, ABC Organisation
-
-## Skills
-
-* **Skill 1** - `Skill` / `Skill` / `Skill` / `Skill`
-* **Skill 2** - `Skill` / `Skill` / `Skill` / `Skill` / `Skill` / `Skill` / `Skill`
-* **Skill 3** - `Skill` / `Skill` / `Skill`
-* **Skill 4** - `Skill` / `Skill` / `Skill` 
-* **Skill 5** - `Skill`
-* **Skill 6** - `Skill` / `Skill` 
-    
+My CV can bne downloaded [here](my.cv.blah).
     
 ## Achievements
 
 
-* [**This is my first achievement**](#) 
+* Best Talks of RSC 2019
    
-   Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula.
+   Prize awarded for giving one of the three best talks at the 42nd annual conference for research students in statistics. As part of my prize, I went on to deliver the same talk at the Royal Statistical Society's 2019 annual conference, held in Belfast.
 
 ***
 
-* [**This is my second achievement**](#) 
+* RSS Prize for Outstanding Academic Achievement 2018
 
-    Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula.
+    Prize award for outstanding academic achievement in my MMathStat.
 
 ***
-
-* [**This is my third achievement**](#) 
-
-   Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula
 
 
 ## Contact me
 
-[agarwal.akshay.akshay8@gmail.com](mailto:agarwal.akshay.akshay8@gmail.com)
+[j.c.kennedy1@ncl.ac.uk](mailto:j.c.kennedy1@ncl.ac.uk)
