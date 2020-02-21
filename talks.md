@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Talks
-permalink: /projects/
+permalink: /talks/
 ---
 
 ### [Stochastic Multilevel Emulation]() 
