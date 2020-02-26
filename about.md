@@ -15,7 +15,7 @@ More generally, I am interested in the applied statistics and Bayesian modelling
 
 ## CV
 
-My CV can be downloaded [here](https://github.com/jcken95/CV/blob/master/cv.pdf).
+My CV can be downloaded [here](/assets/cv.pdf).
     
 ## Achievements
 
