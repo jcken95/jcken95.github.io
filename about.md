@@ -9,7 +9,7 @@ My research interests cover a broad range of statistical topics, with some cross
 
 * Elicitation and Subjectivism
 * Bayesian Emulation
-* Correlated Gaussian Processes
+* Gaussian Processes
 
 More generally, I am interested in the applied statistics and Bayesian modelling. My previous work has used machine learning and statistical methodology to produce fast product costing algorithms and product insights for Nissan Motor Corporation.
 
