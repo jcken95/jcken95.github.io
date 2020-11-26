@@ -8,8 +8,9 @@ I am currently a second year PhD student in Statistics at the School of Maths, S
 My research interests cover a broad range of statistical topics, with some crossover into machine learning. My primary interests are:
 
 * Elicitation and Subjectivism
-* Bayesian Emulation
-* Gaussian Processes
+* Bayesian Emulation & Gaussian Processes
+* Energy Systems
+* Decision Analysis
 
 More generally, I am interested in the applied statistics and Bayesian modelling. My previous work has used machine learning and statistical methodology to produce fast product costing algorithms and product insights for Nissan Motor Corporation.
 
