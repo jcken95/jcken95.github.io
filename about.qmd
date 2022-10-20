@@ -1,0 +1,39 @@
+---
+title: "About"
+about:
+  template: trestles
+  image: img/profile.jpg
+---
+
+#### Education
+
+**PhD Statistics** | Newcastle University | Sept. 2018 -- Dec. 2022
+
+
+Thesis: _Uncertainty Quantification for Stochastic Simulators with Application to Offshore Wind Farms_
+
+**MMathStat** | Newcastle University | Sept. 2014 -- Jun. 2018
+
+Classification: _First Class (Honours)_
+
+Thesis: _Multivariate Statistics & Machine Learning: An Application to Product Costing in Nissan_
+
+#### Experience 
+
+**Intern, Jumping Rivers & United Nations** | Jan. 2022 -- Apr. 2022
+
+ * Analysed time series corresponding to the number of fish caught at thousands species-location combinations with an aim to identify the shape each time series follows
+ * Developed an R package to allow the client to perform similar analyis in the future using the developed statistical methodology
+
+**Graduate Teaching Assistant, Newcastle University** | Sept. 2018 -- Dec. 2022
+
+ * Assisting on various maths & stats modules, both 'in house' and service courses; working in Mathsaid, the university consulting service for maths & stats assistance
+ * Leading lectures on _ad-hoc_ basis
+ * Leading workshops for fellow PGR students
+
+#### Community Involvement & Outreach
+
+* Committee member of the Royal Statistical Society's [Young Statisticians Section](https://twitter.com/statsyss). My main role is social media officer. I've also contributed towards our annual events programme as well as organising session at the RSS annual conference on behalf of the YSS
+ 
+* Committee member of the [North Eastern local group](https://twitter.com/NorthEasternRSS) of the Royal Statistical Society. 
+

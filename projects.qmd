@@ -1,0 +1,8 @@
+---
+  title: "Projects"
+  listing:
+    contents: projects
+    type: grid
+    sort: date
+---
+  Here are my various contributions to society.

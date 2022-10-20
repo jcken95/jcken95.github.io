@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "About",
+    "section": "",
+    "text": "An existential crisis lead to me purging my old website. Welcome to the new me.\nWhen I’m not doing massive nerd stuff I’m probably either out on my bike, out with the dog, cleaning the bike or cleaning the dog. The dog is called Robin and I don’t know what breed he is.\n\n🧠 Education\nPhD Statistics | Newcastle University | Sept. 2018 – Dec. 2022\nThesis: Uncertainty Quantification for Stochastic Simulators with Application to Offshore Wind Farms\nMMathStat | Newcastle University | Sept. 2014 – Jun. 2018\nClassification: First Class (Honours)\nThesis: Multivariate Statistics & Machine Learning: An Application to Product Costing in Nissan\n\n\n🧐 Experience\nIntern, Jumping Rivers, NU Solve & United Nations | Jan. 2022 – Apr. 2022\n\nAnalysed time series corresponding to the number of fish caught at thousands species-location combinations with an aim to identify the shape each time series follows\nDeveloped an R package to allow the client to perform similar analyis in the future using the developed statistical methodology\n\nGraduate Teaching Assistant, Newcastle University | Sept. 2018 – Dec. 2022\n\nAssisting on various maths & stats modules, both ‘in house’ and service courses; working in Mathsaid, the university consulting service for maths & stats assistance\nLeading lectures on ad-hoc basis\nLeading workshops for fellow PGR students\n\n\n\n🥳 Community Involvement & Outreach\n\nCommittee member of the Royal Statistical Society’s Young Statisticians Section. My main role is social media officer. I’ve also contributed towards our annual events programme as well as organising session at the RSS annual conference on behalf of the YSS\nCommittee member of the North Eastern local group of the Royal Statistical Society."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Experience\nIntern, Jumping Rivers & United Nations | Jan. 2022 – Apr. 2022\n\nAnalysed time series corresponding to the number of fish caught at thousands species-location combinations with an aim to identify the shape each time series follows\nDeveloped an R package to allow the client to perform similar analyis in the future using the developed statistical methodology\n\nGraduate Teaching Assistant, Newcastle University | Sept. 2018 – Dec. 2022\n\nAssisting on various maths & stats modules, both ‘in house’ and service courses; working in Mathsaid, the university consulting service for maths & stats assistance\nLeading lectures on ad-hoc basis\nLeading workshops for fellow PGR students\n\n\n\nCommunity Involvement & Outreach\n\nCommittee member of the Royal Statistical Society’s Young Statisticians Section. My main role is social media officer. I’ve also contributed towards our annual events programme as well as organising session at the RSS annual conference on behalf of the YSS\nCommittee member of the North Eastern local group of the Royal Statistical Society."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Test\n\n\n\n\n\n\n\n\nOct 14, 2022\n\n\n\n\n\n\n\n\n\n\n\ncreepr\n\n\nIt’s just beepr but creepy\n\n\n\n\n\nOct 17, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\nI’m a final year (!) PhD student in statistics at Newcastle University. My research is broadly in the field of uncertainty quantification. More precisely, I develop tools, based on Gaussian Processes, to increase the efficiency of tasks such as optimisation under uncertainty and sensitivity analysis with complex, stochastic models. My core application area is planning and maintenance of large offshore wind farms.\nAlthough development of statistical methodology is interesting, I mainly enjoy mucking about with computers and doing more hands-on, messy, statsy stuff. I spend a lot of time getting involved with the wider stats & data science community. I am a committee member of both the Young Statisticians Section and the North Eastern local group of the Royal Statistical Society."
+  },
+  {
+    "objectID": "projects/test.html",
+    "href": "projects/test.html",
+    "title": "Test",
+    "section": "",
+    "text": "This is a test post"
+  },
+  {
+    "objectID": "projects/creepr.html",
+    "href": "projects/creepr.html",
+    "title": "creepr",
+    "section": "",
+    "text": "I really like {beepr}. For the uninitiated, the usage is simply\n\nbeepr::beep()\n\nand the result of this code snippet is a beep. Literally a solitary beep. Quite useful when you have a medium length bit of code and want some kind of indication when it has finished. There are a handful of additional noises that can be accessed by placing a number in the function call.\nThese noises are all fine. But that’s it, they’re just fine. They’re not shocking, jarring, chilling or creepy. Where’s the fun in that?\nTurns out, if you do a bit of digging, the {beepr} package provides you with the functionality to play any .wav file that’s on your machine. This can be done with\n\nbeepr:::play_file(\"/path/to/noise.wav\")\n\nThat got me thinking. If I could collated some creepy .wav files I could probably make a creepy version of {beepr} before Halloween. Probably became a reality and in fact, going from this stupid idea to a working package only took a couple of hours (and I’d forgotten how to make a package)."
+  },
+  {
+    "objectID": "about.html#thesis-multivariate-statistics-machine-learning-an-application-to-product-costing-in-nissan",
+    "href": "about.html#thesis-multivariate-statistics-machine-learning-an-application-to-product-costing-in-nissan",
+    "title": "About",
+    "section": "Thesis: Multivariate Statistics & Machine Learning: An Application to Product Costing in Nissan",
+    "text": "Thesis: Multivariate Statistics & Machine Learning: An Application to Product Costing in Nissan\n\nExperience (not a lot yet …)\nAlthough development of statistical methodology is interesting, I mainly enjoy mucking about with computers and doing more hands-on, messy, statsy stuff. I spend a lot of time getting involved with the wider stats & data science community. I am a committee member of both the Young Statisticians Section and the North Eastern local group of the Royal Statistical Society."
+  },
+  {
+    "objectID": "projects/creepr.html#get-creeping",
+    "href": "projects/creepr.html#get-creeping",
+    "title": "creepr",
+    "section": "Get creeping",
+    "text": "Get creeping\nI’ve put the package on github, thus you can install and run {creepr} in the following way\n\ndevtools::install_github(\"https://github.com/jcken95/creepr\")\ncreepr::creepr()\n\nThis will play a sound from my collated sounds at random. I’ve (to date) included a whopping 8 creepy sounds: “creature”, “eerie”, “intense”, “laugh”, “piano”, “piano2”, “ringing” and “strings”.\nA feature of this package is that, even if you close R whilst the sound is playing, the sound will not terminate with R. If you play a sound, then you’re committed to it. It’s like tops 15 seconds.\nHappy creeping!"
+  },
+  {
+    "objectID": "index2.html",
+    "href": "index2.html",
+    "title": "Hello, 🏄internet surfer🏄",
+    "section": "",
+    "text": "An existential crisis lead to me purging my old website. Welcome to the new me.\nWhen I’m not doing massive nerd stuff I’m probably either out on my bike, out with the dog, cleaning the bike or cleaning the dog. The dog is called Robin and I don’t know what breed he is."
+  }
+]

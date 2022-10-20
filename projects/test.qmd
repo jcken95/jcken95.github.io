@@ -1,0 +1,9 @@
+---
+  title: "Test"
+  subtitle: "A test post"
+  format: html
+  date: last-modified
+  about:
+    template: marquee
+---
+This is a test post
