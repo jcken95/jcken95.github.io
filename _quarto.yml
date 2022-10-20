@@ -2,7 +2,8 @@
 # pulls together pages and sets global options
 project:
   type: website
-
+execute: 
+  freeze: auto
 website:
   title: "Jack Kennedy"
   twitter-card: true
