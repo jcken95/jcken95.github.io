@@ -12,7 +12,7 @@ An existential crisis lead to me purging my old website. Welcome to the new me.
 
 When I'm not doing massive nerd stuff I'm probably either out on my bike, out with the dog, cleaning the bike or cleaning the dog. The dog is called Robin and I don't know what breed he is.
 
-#### 🧠 Education
+## 🧠 Education
 
 **PhD Statistics** \| Newcastle University \| Sept. 2018 -- Dec. 2022
 
@@ -24,7 +24,7 @@ Classification: *First Class (Honours)*
 
 Thesis: *Multivariate Statistics & Machine Learning: An Application to Product Costing in Nissan*
 
-#### 🧐 Experience
+## 🧐 Experience
 
 **Intern, Jumping Rivers, NU Solve & United Nations** \| Jan. 2022 -- Apr. 2022
 
@@ -37,7 +37,7 @@ Thesis: *Multivariate Statistics & Machine Learning: An Application to Product C
 -   Leading lectures on *ad-hoc* basis
 -   Leading workshops for fellow PGR students
 
-#### 🥳 Community Involvement & Outreach
+## 🥳 Community Involvement
 
 -   Committee member of the Royal Statistical Society's [Young Statisticians Section](https://twitter.com/statsyss). My main role is social media officer. I've also contributed towards our annual events programme as well as organising session at the RSS annual conference on behalf of the YSS
 
