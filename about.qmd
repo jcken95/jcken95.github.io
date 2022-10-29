@@ -5,35 +5,39 @@ about:
   image: img/profile.jpg
 ---
 
-#### Education
+I'm a statistician based in the north east. Nice to meet you.
 
-**PhD Statistics** | Newcastle University | Sept. 2018 -- Dec. 2022
+An existential crisis lead to me purging my old website. Welcome to the new me.
 
+When I'm not doing massive nerd stuff I'm probably either out on my bike, out with the dog, cleaning the bike or cleaning the dog. The dog is called Robin and I don't know what breed he is.
 
-Thesis: _Uncertainty Quantification for Stochastic Simulators with Application to Offshore Wind Farms_
+#### 🧠 Education
 
-**MMathStat** | Newcastle University | Sept. 2014 -- Jun. 2018
+**PhD Statistics** \| Newcastle University \| Sept. 2018 -- Dec. 2022
 
-Classification: _First Class (Honours)_
+Thesis: *Uncertainty Quantification for Stochastic Simulators with Application to Offshore Wind Farms*
 
-Thesis: _Multivariate Statistics & Machine Learning: An Application to Product Costing in Nissan_
+**MMathStat** \| Newcastle University \| Sept. 2014 -- Jun. 2018
 
-#### Experience 
+Classification: *First Class (Honours)*
 
-**Intern, Jumping Rivers & United Nations** | Jan. 2022 -- Apr. 2022
+Thesis: *Multivariate Statistics & Machine Learning: An Application to Product Costing in Nissan*
 
- * Analysed time series corresponding to the number of fish caught at thousands species-location combinations with an aim to identify the shape each time series follows
- * Developed an R package to allow the client to perform similar analyis in the future using the developed statistical methodology
+#### 🧐 Experience
 
-**Graduate Teaching Assistant, Newcastle University** | Sept. 2018 -- Dec. 2022
+**Intern, Jumping Rivers & United Nations** \| Jan. 2022 -- Apr. 2022
 
- * Assisting on various maths & stats modules, both 'in house' and service courses; working in Mathsaid, the university consulting service for maths & stats assistance
- * Leading lectures on _ad-hoc_ basis
- * Leading workshops for fellow PGR students
+-   Analysed time series corresponding to the number of fish caught at thousands species-location combinations with an aim to identify the shape each time series follows
+-   Developed an R package to allow the client to perform similar analyis in the future using the developed statistical methodology
 
-#### Community Involvement & Outreach
+**Graduate Teaching Assistant, Newcastle University** \| Sept. 2018 -- Dec. 2022
 
-* Committee member of the Royal Statistical Society's [Young Statisticians Section](https://twitter.com/statsyss). My main role is social media officer. I've also contributed towards our annual events programme as well as organising session at the RSS annual conference on behalf of the YSS
- 
-* Committee member of the [North Eastern local group](https://twitter.com/NorthEasternRSS) of the Royal Statistical Society. 
+-   Assisting on various maths & stats modules, both 'in house' and service courses; working in Mathsaid, the university consulting service for maths & stats assistance
+-   Leading lectures on *ad-hoc* basis
+-   Leading workshops for fellow PGR students
 
+#### 🥳 Community Involvement & Outreach
+
+-   Committee member of the Royal Statistical Society's [Young Statisticians Section](https://twitter.com/statsyss). My main role is social media officer. I've also contributed towards our annual events programme as well as organising session at the RSS annual conference on behalf of the YSS
+
+-   Committee member of the [North Eastern local group](https://twitter.com/NorthEasternRSS) of the Royal Statistical Society.
