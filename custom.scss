@@ -1,0 +1,35 @@
+/*-- scss:defaults --*/
+// load font
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav&display=swap');
+// global
+$primary: #00ab8e;
+.navbar{
+    font-family: 'Yantramanav', sans-serif;
+}
+//main text
+p {
+  font-family: 'Yantramanav', sans-serif, !important;
+    color: #3e4653;
+}
+// lists (bullet pts)
+ul {
+    font-family: 'Yantramanav', sans-serif, !important;
+    color: #3e4653;
+}
+
+// code block
+$code-block-bg: #d3d3d3;
+$code-block-font-size: 0.8em;
+$code-block-border-left: #00ab8e;
+$code-block-text: #00ab8e;
+
+// inline code
+$code-bg: #d3d3d3;
+$code-color: #00ab8e;
+
+// headers
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Yantramanav', sans-serif, !important;
+  color:  black;
+}
+// 

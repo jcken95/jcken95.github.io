@@ -1,0 +1,37 @@
+# main website document
+# pulls together pages and sets global options
+project:
+  type: website
+execute: 
+  freeze: auto
+website:
+  title: "Jack Kennedy"
+  twitter-card: true
+  navbar:
+   right:
+      - href: index.qmd
+      - projects.qmd
+  page-navigation: true
+  google-analytics: UA-152699572-1
+  #cookie-consent: true
+
+
+format:
+  html:
+    #highlight-style: a11y
+    theme: [lumen, custom.scss]
+    #css: styles.css
+    toc: true
+    mainfont: sans-serif
+    
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      href: https://twitter.com/_jcken
+    - icon: github
+      href: https://github.com/jcken95
+    - icon: strava
+      href: https://www.strava.com/athletes/34753518
+    - icon: linkedin
+      href: https://www.linkedin.com/in/jack-kennedy-733a09161/
