@@ -18,11 +18,12 @@ website:
 
 format:
   html:
-    highlight-style: a11y
-    theme: lumen
-    css: styles.css
+    #highlight-style: a11y
+    theme: [lumen, custom.scss]
+    #css: styles.css
     toc: true
-    backgroundcolor: rgb(241, 255, 255)
+    mainfont: sans-serif
+    
 about:
   template: jolla
   links:
@@ -33,4 +34,4 @@ about:
     - icon: strava
       href: https://www.strava.com/athletes/34753518
     - icon: linkedin
-      href: https://www.linkedin.com/in/jack-kennedy-733a09161/ 
+      href: https://www.linkedin.com/in/jack-kennedy-733a09161/
