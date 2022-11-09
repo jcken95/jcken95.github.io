@@ -29,6 +29,8 @@ about:
   links:
     - icon: twitter
       href: https://twitter.com/_jcken
+    - icon: mastodon
+      href: https://qoto.org/@_jcken  
     - icon: github
       href: https://github.com/jcken95
     - icon: strava
