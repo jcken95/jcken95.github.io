@@ -13,7 +13,7 @@ website:
       - projects.qmd
   page-navigation: true
   google-analytics: UA-152699572-1
-  #cookie-consent: true
+  cookie-consent: true
 
 
 format:
