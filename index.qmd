@@ -6,39 +6,11 @@ about:
   image-shape: rounded
 ---
 
-I'm a statistician based in the north east. Nice to meet you.
+I'm  Jack, a statistician, data scientist and educator based in the north east. Nice to meet you.
 
-An existential crisis lead to me purging my old website. Welcome to the new me.
+My currently a data scientist at [Jumping Rivers](https://www.jumpingrivers.com). I completed all my studies at Newcastle University. I hold a PhD in Statistics (2023) and also obtained a First class MMathStat (2018).
 
-When I'm not doing massive nerd stuff I'm probably either out on my bike, out with the dog, cleaning the bike or cleaning the dog. The dog is called Robin and I don't know what breed he is.
+From a professional perspective, I love telling stories with data, learning about how to write production-ready software, anything remotely statsy and finding a data-driven solution to challenging problems. I'm donated a lot of my time to the [Royal Statistical Society](rss.org.uk); serving and chairing the Young Statisticians Section and I'm also treasurer or the North Eastern local group.
 
-## 🧠 Education
+When I'm not doing massive nerd stuff I'm probably doing some type II fun. I fill my free time with cycling, running and walking the dog. The dog is called Robin and I don't know what breed he is.
 
-**PhD Statistics** \| Newcastle University \| Sept. 2018 -- Dec. 2022
-
-Thesis: *Uncertainty Quantification for Stochastic Simulators with Application to Offshore Wind Farms*
-
-**MMathStat** \| Newcastle University \| Sept. 2014 -- Jun. 2018
-
-Classification: *First Class (Honours)*
-
-Thesis: *Multivariate Statistics & Machine Learning: An Application to Product Costing in Nissan*
-
-## 🧐 Experience
-
-**Intern, Jumping Rivers, NU Solve & United Nations** \| Jan. 2022 -- Apr. 2022
-
--   Analysed time series corresponding to the number of fish caught at thousands species-location combinations with an aim to identify the shape each time series follows
--   Developed an R package to allow the client to perform similar analyis in the future using the developed statistical methodology
-
-**Graduate Teaching Assistant, Newcastle University** \| Sept. 2018 -- Dec. 2022
-
--   Assisting on various maths & stats modules, both 'in house' and service courses; working in Mathsaid, the university consulting service for maths & stats assistance
--   Leading lectures on *ad-hoc* basis
--   Leading workshops for fellow PGR students
-
-## 🥳 Community Involvement
-
--   Committee member of the Royal Statistical Society's [Young Statisticians Section](https://twitter.com/statsyss). My main role is social media officer. I've also contributed towards our annual events programme as well as organising session at the RSS annual conference on behalf of the YSS
-
--   Committee member of the [North Eastern local group](https://twitter.com/NorthEasternRSS) of the Royal Statistical Society.
