@@ -11,6 +11,8 @@ website:
    right:
       - href: index.qmd
       - projects.qmd
+      - text: "CV"
+        href: https://jcken95.github.io/CV/kennedy-jack.pdf
   page-navigation: true
   google-analytics: UA-152699572-1
   cookie-consent: true
