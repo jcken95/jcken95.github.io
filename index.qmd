@@ -8,7 +8,7 @@ about:
 
 I'm  Jack, a statistician, data scientist and educator based in the north east. Nice to meet you.
 
-My currently a data scientist at [Jumping Rivers](https://www.jumpingrivers.com). I completed all my studies at Newcastle University. I hold a PhD in Statistics (2023) and also obtained a First class MMathStat (2018).
+My currently a data scientist at [UKHSA](https://www.gov.uk/government/organisations/uk-health-security-agency). I completed all my studies at Newcastle University. I hold a PhD in Statistics (2023) and also obtained a First class MMathStat (2018).
 
 From a professional perspective, I love telling stories with data, learning about how to write production-ready software, anything remotely statsy and finding a data-driven solution to challenging problems. I'm donated a lot of my time to the [Royal Statistical Society](rss.org.uk); serving and chairing the Young Statisticians Section and I'm also treasurer or the North Eastern local group.
 
