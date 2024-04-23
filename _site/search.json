@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m Jack, a statistician, data scientist and educator based in the north east. Nice to meet you.\nI’m currently a senior data scientist at UKHSA. I completed all my studies at Newcastle University. I hold a PhD in Statistics (2023) and also obtained a First class MMathStat (2018).\nFrom a professional perspective, I love telling stories with data, learning about how to write production-ready software, anything remotely statsy and finding a data-driven solution to challenging problems. I’m donated a lot of my time to the Royal Statistical Society; serving and chairing the Young Statisticians Section and I’m also treasurer or the North Eastern local group.\nWhen I’m not doing massive nerd stuff I’m probably doing some type II fun. I fill my free time with cycling, running and walking the dog. The dog is called Robin and I don’t know what breed he is."
+  },
+  {
+    "objectID": "projects/creepr.html",
+    "href": "projects/creepr.html",
+    "title": "creepr",
+    "section": "",
+    "text": "I really like {beepr}. For the uninitiated, the usage is simply\n\nbeepr::beep()\n\nand the result of this code snippet is a beep. Literally a solitary beep. Quite useful when you have a medium length bit of code and want some kind of indication when it has finished. There are a handful of additional noises that can be accessed by placing a number in the function call.\nThese noises are all fine. But that’s it, they’re just fine. They’re not shocking, jarring, chilling or creepy. Where’s the fun in that?\nTurns out, if you do a bit of digging, the {beepr} package provides you with the functionality to play any .wav file that’s on your machine. This can be done with\n\nbeepr:::play_file(\"/path/to/noise.wav\")\n\nThat got me thinking. If I could collated some creepy .wav files I could probably make a creepy version of {beepr} before Halloween. Probably became a reality and in fact, going from this stupid idea to a working package only took a couple of hours (and I’d forgotten how to make a package)."
+  },
+  {
+    "objectID": "projects/creepr.html#the-prequel-beepr",
+    "href": "projects/creepr.html#the-prequel-beepr",
+    "title": "creepr",
+    "section": "",
+    "text": "I really like {beepr}. For the uninitiated, the usage is simply\n\nbeepr::beep()\n\nand the result of this code snippet is a beep. Literally a solitary beep. Quite useful when you have a medium length bit of code and want some kind of indication when it has finished. There are a handful of additional noises that can be accessed by placing a number in the function call.\nThese noises are all fine. But that’s it, they’re just fine. They’re not shocking, jarring, chilling or creepy. Where’s the fun in that?\nTurns out, if you do a bit of digging, the {beepr} package provides you with the functionality to play any .wav file that’s on your machine. This can be done with\n\nbeepr:::play_file(\"/path/to/noise.wav\")\n\nThat got me thinking. If I could collated some creepy .wav files I could probably make a creepy version of {beepr} before Halloween. Probably became a reality and in fact, going from this stupid idea to a working package only took a couple of hours (and I’d forgotten how to make a package)."
+  },
+  {
+    "objectID": "projects/creepr.html#get-creeping",
+    "href": "projects/creepr.html#get-creeping",
+    "title": "creepr",
+    "section": "Get creeping",
+    "text": "Get creeping\nI’ve put the package on github, thus you can install and run {creepr} in the following way\n\ndevtools::install_github(\"https://github.com/jcken95/creepr\")\ncreepr::creepr()\n\nThis will play a sound from my collated sounds at random. I’ve (to date) included a whopping 8 creepy sounds: “creature”, “eerie”, “intense”, “laugh”, “piano”, “piano2”, “ringing” and “strings”.\nA feature of this package is that, even if you close R whilst the sound is playing, the sound will not terminate with R. If you play a sound, then you’re committed to it. It’s like tops 15 seconds.\nHappy creeping!"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Here are my various contributions to society.\n\n\n\n\n\n\n\n\n\n\ncreepr\n\n\nIt’s just beepr but creepy\n\n\n\n\n\nNov 9, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+  }
+]
