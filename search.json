@@ -1,28 +1,49 @@
 [
   {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Here are my various contributions to society.\n\n\n\n\n\n\n\n\n\n\ncreepr\n\n\nIt’s just beepr but creepy\n\n\n\n\n\nNov 9, 2022\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "About",
     "section": "",
-    "text": "I’m Jack, a statistician, data scientist and educator based in the north east. Nice to meet you.\nMy currently a data scientist at Jumping Rivers. I completed all my studies at Newcastle University. I hold a PhD in Statistics (2023) and also obtained a First class MMathStat (2018).\nFrom a professional perspective, I love telling stories with data, learning about how to write production-ready software, anything remotely statsy and finding a data-driven solution to challenging problems. I’m donated a lot of my time to the Royal Statistical Society; serving and chairing the Young Statisticians Section and I’m also treasurer or the North Eastern local group.\nWhen I’m not doing massive nerd stuff I’m probably doing some type II fun. I fill my free time with cycling, running and walking the dog. The dog is called Robin and I don’t know what breed he is."
+    "text": "I’m a statistician based in the north east. Nice to meet you.\nAn existential crisis lead to me purging my old website. Welcome to the new me.\nWhen I’m not doing massive nerd stuff I’m probably either out on my bike, out with the dog, cleaning the bike or cleaning the dog. The dog is called Robin and I don’t know what breed he is."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "About",
+    "section": "🧠 Education",
+    "text": "🧠 Education\nPhD Statistics | Newcastle University | Sept. 2018 – Dec. 2022\nThesis: Uncertainty Quantification for Stochastic Simulators with Application to Offshore Wind Farms\nMMathStat | Newcastle University | Sept. 2014 – Jun. 2018\nClassification: First Class (Honours)\nThesis: Multivariate Statistics & Machine Learning: An Application to Product Costing in Nissan"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "About",
+    "section": "🧐 Experience",
+    "text": "🧐 Experience\nIntern, Jumping Rivers, NU Solve & United Nations | Jan. 2022 – Apr. 2022\n\nAnalysed time series corresponding to the number of fish caught at thousands species-location combinations with an aim to identify the shape each time series follows\nDeveloped an R package to allow the client to perform similar analyis in the future using the developed statistical methodology\n\nGraduate Teaching Assistant, Newcastle University | Sept. 2018 – Dec. 2022\n\nAssisting on various maths & stats modules, both ‘in house’ and service courses; working in Mathsaid, the university consulting service for maths & stats assistance\nLeading lectures on ad-hoc basis\nLeading workshops for fellow PGR students"
+  },
+  {
+    "objectID": "index.html#community-involvement",
+    "href": "index.html#community-involvement",
+    "title": "About",
+    "section": "🥳 Community Involvement",
+    "text": "🥳 Community Involvement\n\nCommittee member of the Royal Statistical Society’s Young Statisticians Section. My main role is social media officer. I’ve also contributed towards our annual events programme as well as organising session at the RSS annual conference on behalf of the YSS\nCommittee member of the North Eastern local group of the Royal Statistical Society."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Test\n\n\n\n\n\n\n\n\nNov 9, 2022\n\n\n\n\n\n\n\n\n\n\n\ncreepr\n\n\nIt’s just beepr but creepy\n\n\n\n\n\nNov 9, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/test.html",
+    "href": "projects/test.html",
+    "title": "Test",
+    "section": "",
+    "text": "This is a test post"
   },
   {
     "objectID": "projects/creepr.html",
     "href": "projects/creepr.html",
-    "title": "creepr",
-    "section": "",
-    "text": "I really like {beepr}. For the uninitiated, the usage is simply\n\nbeepr::beep()\n\nand the result of this code snippet is a beep. Literally a solitary beep. Quite useful when you have a medium length bit of code and want some kind of indication when it has finished. There are a handful of additional noises that can be accessed by placing a number in the function call.\nThese noises are all fine. But that’s it, they’re just fine. They’re not shocking, jarring, chilling or creepy. Where’s the fun in that?\nTurns out, if you do a bit of digging, the {beepr} package provides you with the functionality to play any .wav file that’s on your machine. This can be done with\n\nbeepr:::play_file(\"/path/to/noise.wav\")\n\nThat got me thinking. If I could collated some creepy .wav files I could probably make a creepy version of {beepr} before Halloween. Probably became a reality and in fact, going from this stupid idea to a working package only took a couple of hours (and I’d forgotten how to make a package)."
-  },
-  {
-    "objectID": "projects/creepr.html#the-prequel-beepr",
-    "href": "projects/creepr.html#the-prequel-beepr",
     "title": "creepr",
     "section": "",
     "text": "I really like {beepr}. For the uninitiated, the usage is simply\n\nbeepr::beep()\n\nand the result of this code snippet is a beep. Literally a solitary beep. Quite useful when you have a medium length bit of code and want some kind of indication when it has finished. There are a handful of additional noises that can be accessed by placing a number in the function call.\nThese noises are all fine. But that’s it, they’re just fine. They’re not shocking, jarring, chilling or creepy. Where’s the fun in that?\nTurns out, if you do a bit of digging, the {beepr} package provides you with the functionality to play any .wav file that’s on your machine. This can be done with\n\nbeepr:::play_file(\"/path/to/noise.wav\")\n\nThat got me thinking. If I could collated some creepy .wav files I could probably make a creepy version of {beepr} before Halloween. Probably became a reality and in fact, going from this stupid idea to a working package only took a couple of hours (and I’d forgotten how to make a package)."
