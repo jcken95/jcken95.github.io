@@ -27,6 +27,33 @@ If you're here, I'm going to assume you know roughly what a code review is, but 
 Code review is a form of peer review. Let’s suppose you’ve written some code, [made a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) and then assigned a reviewer. The reviewer goes through your changes and looks for potential issues with the code, suggests improvements, and maybe says one or two nice things about the thing you've been grinding away at.
 
 
+# How to review code
+
+In our team, we provide a formal review via GitHub. Let's suppose you've opened a pull request, marked it as ready and assigned one or more reviewers.
+
+We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes.
+
+ 
+## Literal code review
+
+Here you're going to look at the code, maybe run or interact with it, then make comments about the code via the pull request mechanisms.
+
+To make a comment, click the `+` symbol to comment on a single line of code. Click a `+` and drag down to comment on multiple lines.
+
+![image](code_review/plus_symbol.png)
+
+   * You can write a general comment or question in the text box.
+   * Click the little `+/-` symbol (it looks a bit like a page 📄) to make a direction suggestion on the code. This is useful when it's simply easier to make the fix, than telling someone how to make the fix.
+   * Clicking the symbol again will let you make a new suggestion on the _same_ line(s) of code. Handy when you think there are multiple ways forward.
+
+![image](code_review/example_suggest.png)
+
+   * Click `Add single comment` if the review is very short, informal or you're just being nosey. `Start review` is better for longer or more formal reviews.
+   * Once you've finished reviewing, click `Review changes` in the top right. You may want to write some feedback in the comment box. Then click one of `Comment`, `Approve` or `Request changes` as appropriate and then `Submit Review`.
+
+   * Comments on code start a "conversation" which can be resolved. It is up to the reviewer to resolve conversations. I'd encourage authors to use emoji reactions or comments to track their work.
+   * You can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong stage of the review to isolate changes.
+
 
 ## What is a reviewer looking for?
 
@@ -38,7 +65,7 @@ When reviewing code, it's a good idea to follow a mental checklist. I find the f
   * Does the code have clear, maintainable structure? I think [Chapter 3](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/code.html) of _Best Coding Practices for R_ is a good guide.
   * Is the code difficult to read, overly complex or full of repetition?
   * Is it clear how to use or run the code?
-  * Does the code have a consistent style with well-structured function and variable names?
+  * Does the code have a consistent style with evocative function and variable names?
   * Are there any merge conflicts?
 
 There's also a second _What_ here: what does the reviewer _do_ during code review?
@@ -111,53 +138,17 @@ Here you'll be checking that code is maintainable and well formatted. You'll als
 
 There's also a security aspect here: by reviewing code, we provide a guard against malice.  This should _never_ be a problem, but nasty people do have jobs, a little code review protects against this.
 
- 
+## How should the reviewers approach review?
 
-# How to review code
+We're going to think here about how review code in a way which addresses concerns in a way which is as painless as possible. Those with an academic background will be familiar with _Reviewer 2_. Apoligies for any trauma I've just forced you to relive. We don't want to be like reviewer 2, but there is more to consider.
 
-In our team, we provide a formal review via GitHub. Let's suppose you've opened a pull request, marked it as ready and assigned one or more reviewers.
-
-We will first think about the literal act of reviewing code, and then later we will think about how a review should behave.
-
- 
-
-## Literal code review
-
-* Make comments directly on the code
-
-   * Click the `+` symbol to comment on a single line of code. Click a `+` and drag down to comment on multiple lines.
-
- 
-
-![image](code_review/plus_symbol.png)
-
-   * You can write a general comment or question in the text box.
-   * Click the little `+/-` symbol to make a direction suggestion on the code. This is useful when it's simply easier to make the fix, than telling someone how to make the fix
-
- 
-
-![image](code_review/example_suggest.png)
-
-   * Click `Add single comment` if the review is very short, informal or you're just being nosey. `Start review` is better for longer or more formal reviews.
-   * Once you've finished reviewing, click `Review changes` in the top right. You may want to write some feedback in the comment box. Then click one of `Comment`, `Approve` or `Request changes` as appropriate and then `Submit Review`.
-
-   * Comments on code start a "conversation" which can be resolved. It is up to the reviewer to resolve conversations. I'd encourage authors to use emojis or comments to track their work.
-   * You can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong stage of the review to isolate changes.
-
- 
-
-## Guiding principles: how should the reviewer behave?
-
-How should the reviewer's behave? How should the team approach review?
-
-### The gist of things
 #### Code review needs to be inclusive
 
 Senior and junior members should be performing code review. Distributing review across the team helps improve knowledge transfer, and gives team members the opportunity to become familiar with large parts of the code base.
 
-This also stops individual memebers of the team getting swamped with review. If all they do is review code, they're gonna be stroppy and probably provide bad reviews.
+This also stops individual members of the team getting swamped with review. If all they do is review code, they're gonning be stroppy and probably provide bad reviews.
 
-### Do not allow deviations from the team style guide
+#### Do not allow deviations from the team style guide
 
 My team adopted the [tidyverse](https://style.tidyverse.org/) style guide, with some minor tweaks. It doesn't really matter which style guide you use, just pick one that's readable.
 
@@ -173,7 +164,7 @@ Sometimes code review can come across as blunt – we’re all really busy, it�
 
 You can avoid being blunt by breaking up review sessions. Take your own patience into account, but if you're reviewing for an hour or more, you're probably going to start cutting corners and getting grumpy.
 
-If you find yourself being blunt, [Owen](https://github.com/owenjonesuob) recommends having a cup of tea before finalising your review. I think he's right.
+If you find yourself being blunt, grumpy or otherwise unsavoury, [Owen](https://github.com/owenjonesuob) recommends having a cup of tea before finalising your review. I think he's right.
 
 #### Favour asking open ended questions instead of making opinionated, or strong statements
 
@@ -229,6 +220,7 @@ It's also worth setting up a (video) meeting about the code. Communication nuian
 #### Consider bringing in an additional reviewer
 
 Sometimes, two people just really struggle to come to an agreement. I think in this case it's best to just let someone else make the decision.
+
   * Both give your reasonings to the additional reviewer
   * The second reviewer's decision is the one you go with
 
