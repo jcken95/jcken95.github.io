@@ -129,14 +129,14 @@ We will first think about the literal act of reviewing code, and then later we w
 
  
 
-![image](image of + sign)
+![image](code_review/plus_symbol.png)
 
    * You can write a general comment or question in the text box.
    * Click the little `+/-` symbol to make a direction suggestion on the code. This is useful when it's simply easier to make the fix, than telling someone how to make the fix
 
  
 
-![image](image of adding a suggest)
+![image](code_review/example_suggest.png)
 
    * Click `Add single comment` if the review is very short, informal or you're just being nosey. `Start review` is better for longer or more formal reviews.
    * Once you've finished reviewing, click `Review changes` in the top right. You may want to write some feedback in the comment box. Then click one of `Comment`, `Approve` or `Request changes` as appropriate and then `Submit Review`.
