@@ -2,6 +2,7 @@
   title: "Code review for statisticians, data scientists & modellers"
   subtitle: ""
   description: "todo"
+  number-sections: true
   format: html
   date: 09-11-2024
   about:
@@ -31,7 +32,7 @@ Code review is a form of peer review. Let’s suppose you’ve written some code
 
 In our team, we provide a formal review via GitHub. Let's suppose you've opened a pull request, marked it as ready and assigned one or more reviewers.
 
-We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes.
+We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes. If you're comfortable with this, skip ahead to @sec-what.
 
  
 ## Literal code review
@@ -55,7 +56,7 @@ To make a comment, click the `+` symbol to comment on a single line of code. Cli
    * You can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong stage of the review to isolate changes.
 
 
-## What is a reviewer looking for?
+## What is a reviewer looking for? {#sec-what}
 
 When reviewing code, it's a good idea to follow a mental checklist. I find the following works well for me and the team I'm part of:
 
