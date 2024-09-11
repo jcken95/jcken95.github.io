@@ -2,7 +2,6 @@
   title: "Code review for statisticians, data scientists & modellers"
   subtitle: ""
   description: "todo"
-  number-sections: true
   format: html
   date: 09-11-2024
   about:
@@ -13,13 +12,13 @@
 
 ## Who is this for?
 
-I work as a data scientist alongside people who typically have academic backgrounds in statistics, public health, mathematical biology or mathematical ecology. Some of us have job titles relating to data science, other to mathematical and statistical modelling. None of us are software developers trade.
+I work as a data scientist alongside people who typically have academic backgrounds in statistics, public health, or the mathematical and statistical aspects of biology or ecology. Some of us have job titles relating to data science, other to mathematical and statistical modelling. None of us are software developers trade.
 
 However, we're writing software all day. We're writing mathematical/statistical models, creating data-driven products and doing data engineering. We quality assure all of this work via code review.
 
-The honest answer to _Who is this for?_ is that this is for me. It's for a previous version of myself who knew the mechanics of reviewing code, but could have exercised a bit more nuance. 
+The honest answer to _Who is this for?_ is that this is for me. It's for a previous version of myself who knew the mechanics of reviewing code, but could have exercised <s>a bit more</s> _much more_ nuance.
 
-That being said, I think anyone working in some kind of modelling or analytical role, whose main output is some sort of mathematical or statistical analysis, but implements their processes via code could find this useful. I'll call these people "analysts".
+That being said, I think anyone working in some kind of modelling or analytical role, whose main output is some sort of mathematical or statistical analysis, but implements their processes via code could find this useful.
 
 It doesn't really matter what programming language you use, or whether you're storing your code on GitHub, GitLab, Bitbucket or whatever else. However this will be biased towards R and GitHub because that's what I use. The concepts are important here, not the precise toolkit.
 
@@ -32,31 +31,62 @@ Code review is a form of peer review. Let’s suppose you’ve written some code
 
 In our team, we provide a formal review via GitHub. Let's suppose you've opened a pull request, marked it as ready and assigned one or more reviewers.
 
-We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes. If you're comfortable with this, skip ahead to @sec-what.
+We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes. If you're comfortable with annotating someone else's code via a pull request, [skip ahead](code_review.html#why-do-we-review-code)
 
  
 ## Literal code review
 
 Here you're going to look at the code, maybe run or interact with it, then make comments about the code via the pull request mechanisms.
 
+#### Annotating code
+
 To make a comment, click the `+` symbol to comment on a single line of code. Click a `+` and drag down to comment on multiple lines.
 
-![image](code_review/plus_symbol.png)
+![Making a comment on a line of code.](code_review/plus_symbol.png)
 
    * You can write a general comment or question in the text box.
    * Click the little `+/-` symbol (it looks a bit like a page 📄) to make a direction suggestion on the code. This is useful when it's simply easier to make the fix, than telling someone how to make the fix.
    * Clicking the symbol again will let you make a new suggestion on the _same_ line(s) of code. Handy when you think there are multiple ways forward.
 
-![image](code_review/example_suggest.png)
+![Making a direct suggestion to code.](code_review/example_suggest.png)
 
    * Click `Add single comment` if the review is very short, informal or you're just being nosey. `Start review` is better for longer or more formal reviews.
-   * Once you've finished reviewing, click `Review changes` in the top right. You may want to write some feedback in the comment box. Then click one of `Comment`, `Approve` or `Request changes` as appropriate and then `Submit Review`.
+   
+#### Submitting review   
+
+Once you've finished reviewing, click `Review changes` in the top right of the browser winder. Take some time to write encouraging feedback in the comment box.
+   
+Then click one of `Comment`, `Approve` or `Request changes` as appropriate and then `Submit Review`.
 
    * Comments on code start a "conversation" which can be resolved. It is up to the reviewer to resolve conversations. I'd encourage authors to use emoji reactions or comments to track their work.
    * You can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong stage of the review to isolate changes.
 
 
-## What is a reviewer looking for? {#sec-what}
+# Why do we review code?
+
+There is one fairly obvious answer to this question: to check the code does what it should. But there are a whole host of benefits to teams performing code review.
+
+#### Knowledge transfer & collaboration
+
+Analysts have a broad range of backgrounds and experiences. The reviewer can learn from the PR author, and by making suggestions, the author can learn from the reviewer by inspecting their code, running it, and asking questions.
+
+Shared knowledge about the code base ensures there is not a single point of failure in the team: you _really_ want your [bus number](https://en.wikipedia.org/wiki/Bus_factor) to be bigger than one.
+
+By reviewing code, the authors and reviewers are brought together to solve a problem. It can even be a good idea to bring in a reviewer before the work is complete to get the author unstuck, or just provide a little guidance.
+
+#### Squash bugs before they occur
+
+We don't want bugs in production code. Checking over the code before it's put into production is the best way to prevent this. But bugs do occur, we're only human.
+
+
+#### Quality and compliance:
+
+Here you'll be checking that code is maintainable and well formatted. You'll also want to check that the outputs meet a minimum standard, for example, does your model give vaguely sensible predictions?
+
+There's also a security aspect here: by reviewing code, we provide a guard against malice.  This should _never_ be a problem, but nasty people do have jobs, a little code review protects against this.
+
+
+# What is a reviewer looking for?
 
 When reviewing code, it's a good idea to follow a mental checklist. I find the following works well for me and the team I'm part of:
 
@@ -69,7 +99,7 @@ When reviewing code, it's a good idea to follow a mental checklist. I find the f
   * Does the code have a consistent style with evocative function and variable names?
   * Are there any merge conflicts?
 
-There's also a second _What_ here: what does the reviewer _do_ during code review?
+# What does the reviewer do?
 
 #### Asks questions to help the reviewer understand the code.
 
@@ -116,30 +146,7 @@ It can be a good idea to prefix your nit with “nit:” to make it clear that y
 
 
 
-## Why do we review code?
-
-There is a fairly obvious answer to this question: to check the code does what it should. But there are a whole host of reasons to review code.
-
-#### Knowledge transfer & collaboration
-
-Analysts have a broad range of backgrounds and experiences. The reviewer can learn from the PR author, and by making suggestions, the author can learn from the reviewer by inspecting their code, running it, and asking questions.
-
-Shared knowledge about the code base ensures there is not a single point of failure in the team: you _really_ want your [bus number](https://en.wikipedia.org/wiki/Bus_factor) to be bigger than one.
-
-By reviewing code, the authors and reviewers are brought together to solve a problem. It can even be a good idea to bring in a reviewer before the work is complete to get the author unstuck, or just provide a little guidance.
-
-#### Squash bugs before they occur
-
-We don't want bugs in production code. Checking over the code before it's put into production is the best way to prevent this. But bugs do occur, we're only human.
-
-
-#### Quality and compliance:
-
-Here you'll be checking that code is maintainable and well formatted. You'll also want to check that the outputs meet a minimum standard, for example, does your model give vaguely sensible predictions?
-
-There's also a security aspect here: by reviewing code, we provide a guard against malice.  This should _never_ be a problem, but nasty people do have jobs, a little code review protects against this.
-
-## How should the reviewers approach review?
+# How should the reviewers approach review?
 
 We're going to think here about how review code in a way which addresses concerns in a way which is as painless as possible. Those with an academic background will be familiar with _Reviewer 2_. Apoligies for any trauma I've just forced you to relive. We don't want to be like reviewer 2, but there is more to consider.
 
