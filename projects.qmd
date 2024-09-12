@@ -2,7 +2,7 @@
   title: "Projects"
   listing:
     contents: projects
-    type: grid
-    sort: date
+    type: table
+    sort: date desc
 ---
   Here are my various contributions to society.
