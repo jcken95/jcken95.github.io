@@ -140,7 +140,7 @@ You should not just be looking for things that are wrong with the code, but also
  
 #### Provides nit picks
 
-Nit picks, or just nits, are annoying (and something I do too much, sorry colleages), but they are an inevitable apart of code review
+Nit picks, or just nits, are annoying (and something I do too much, sorry colleagues), but they are an inevitable apart of code review
 
 Nits are usually small stylistic points. Examples include:
 
@@ -243,7 +243,7 @@ It's also worth setting up a (video) meeting about the code. Communication nuanc
 
 Sometimes, two people just really struggle to come to an agreement. I think in this case it's best to just let someone else make the decision.
 
-  * Both give your reasonings to the additional reviewer
+  * Both give your reasons to the additional reviewer
   * The second reviewer's decision is the one you go with
 
  
@@ -255,8 +255,8 @@ Code review is a really critical part a modelling team's quality assurance proce
 
 * [Google's engineering practices](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
 
-* [Gitlab blog: What is a code review?](https://about.gitlab.com/topics/version-control/what-is-code-review/)
+* [GitLab blog: What is a code review?](https://about.gitlab.com/topics/version-control/what-is-code-review/)
 
-* [Stackoverflow blog: How to Make Good Code Review Better](https://stackoverflow.blog/2019/09/30/how-to-make-good-code-reviews-better/)
+* [Stack Overflow blog: How to Make Good Code Review Better](https://stackoverflow.blog/2019/09/30/how-to-make-good-code-reviews-better/)
 
 * [Tidyteam code review principles](https://code-review.tidyverse.org/ )
