@@ -58,7 +58,7 @@ To make a comment, click the `+` symbol to comment on a single line of code. Cli
    
 #### Submitting review   
 
-Once you've finished reviewing, click `Review changes` in the top right of the browser winder. Take some time to write encouraging feedback in the comment box.
+Once you've finished reviewing, click `Review changes` in the top right of the browser window. Take some time to write encouraging feedback in the comment box.
    
 Then click one of
 
@@ -175,7 +175,7 @@ My team adopted the [tidyverse](https://style.tidyverse.org/) style guide, with 
 
 Adopting a style guide avoids nits, makes code easier to understand, and because we know what to expect, it ultimately makes everyone’s life easier.
 
-I think it’s _okay_ to be pragmatic about the style guide in a rapid response. If you're regularly sticking to the style guide, you'll be using it automatically anyway. But if there are problems, do spin up a second PR which cleans up the code as soon as you can.
+However, I think it’s _okay_ to be pragmatic about the style guide in a rapid response. If you're regularly sticking to the style guide, you'll be using it automatically anyway. But if there are problems, do spin up a second PR which cleans up the code as soon as you can.
 
 If a violation of the style guide is a big fix, because, for example, you need to quickly make changes to a rarely maintained part of the code base, a separate ticket or issue for this is okay too.
 
@@ -232,7 +232,7 @@ You can also construct PRs which [merge into a branch other than main](https://d
 </center>
 #### The author thinks a requested change will take too long to fix, or is out of scope
 
-Consider how much fix will improve the overall team output/code health. I'd also encourage the author to try to make the fix anyway. If it takes more than (say) 10 minutes, spin up a new issue to resolve when you have more time.
+Consider how much fix will improve the overall team output/code health. I'd encourage the author to try to make the fix anyway. If it takes more than (say) 10 minutes, spin up a new issue to resolve when you have more time.
 
 #### The author and reviewer just can't agree on the best way forward
 
@@ -246,8 +246,8 @@ It's also worth setting up a (video) meeting about the code. Communication nuanc
 
 Sometimes, two people just really struggle to come to an agreement. I think in this case it's best to just let someone else make the decision.
 
-  * Both give your reasons to the additional reviewer
-  * The second reviewer's decision is the one you go with
+  * Both give your reasons to the additional reviewer.
+  * The second reviewer's decision is the one you go with.
 
  
 # In review
