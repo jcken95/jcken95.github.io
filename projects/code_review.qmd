@@ -3,14 +3,14 @@
   subtitle: ""
   description: "Software developers have some really good approaches to code review. Here's a data scientists plea to listen to the software developers!"
   format: html
-  date: 2024-09-11
+  date: 2024-09-12
   about:
     template: marquee
 ---
 
 # Who is this for?
 
-I work as a data scientist alongside people who typically have academic backgrounds in statistics, epidemiology, or something of a similar feel. Some of us have job titles relating to data science, other to mathematical and statistical modelling. None of us are software developers trade.
+I work as a data scientist alongside people who typically have academic backgrounds in statistics, epidemiology, or something of a similar feel. Some of us have job titles relating to data science, other to mathematical and statistical modelling. None of us are software developers by trade.
 
 However, we're writing software all day. We're writing mathematical/statistical models, creating data-driven products and doing data engineering. We quality assure all of this work via code review.
 
