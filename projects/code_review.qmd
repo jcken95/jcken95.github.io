@@ -1,16 +1,14 @@
 ---
   title: "Code review for statisticians, data scientists & modellers"
   subtitle: ""
-  description: "todo"
+  description: "Software developers have some really good approaches to code review. Here's a data scientists plea to listen to the software developers!"
   format: html
   date: 09-11-2024
   about:
     template: marquee
 ---
 
-# The who, what, why and how of code review
-
-## Who is this for?
+# Who is this for?
 
 I work as a data scientist alongside people who typically have academic backgrounds in statistics, public health, or the mathematical and statistical aspects of biology or ecology. Some of us have job titles relating to data science, other to mathematical and statistical modelling. None of us are software developers trade.
 
@@ -26,17 +24,21 @@ If you're here, I'm going to assume you know roughly what a code review is, but 
 
 Code review is a form of peer review. Let’s suppose you’ve written some code, [made a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) and then assigned a reviewer. The reviewer goes through your changes and looks for potential issues with the code, suggests improvements, and maybe says one or two nice things about the thing you've been grinding away at.
 
+I'd also like to be upfront here and say there is very little original thought going into this. Software developers have written a lot of good content on what makes good code review. I'll link to some further reading and inspiration and the end. The aim here is to
+
+ * Bring good review practice to those in analytical roles.
+ * Communicate this good practice in a way which works for those in analytical roles.
 
 # How to review code
 
 In our team, we provide a formal review via GitHub. Let's suppose you've opened a pull request, marked it as ready and assigned one or more reviewers.
 
-We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes. If you're comfortable with annotating someone else's code via a pull request, [skip ahead](code_review.html#why-do-we-review-code)
+We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes. If you're comfortable with annotating someone else's code via a pull request, [skip ahead](code_review.html#why-do-we-review-code).
 
  
 ## Literal code review
 
-Here you're going to look at the code, maybe run or interact with it, then make comments about the code via the pull request mechanisms.
+Here you're going to look at the code, maybe run or interact with it, then make comments about the code via the pull request mechanisms. I tend to start by having a skim over the code to look for general structure, then spend some time running and interacting with the code later to really get into the guts of it.
 
 #### Annotating code
 
@@ -50,16 +52,22 @@ To make a comment, click the `+` symbol to comment on a single line of code. Cli
 
 ![Making a direct suggestion to code.](code_review/example_suggest.png)
 
-   * Click `Add single comment` if the review is very short, informal or you're just being nosey. `Start review` is better for longer or more formal reviews.
+   * Click `Add single comment` if the review is informal or you're just being nosey. `Start review` is better formal reviews.
    
 #### Submitting review   
 
 Once you've finished reviewing, click `Review changes` in the top right of the browser winder. Take some time to write encouraging feedback in the comment box.
    
-Then click one of `Comment`, `Approve` or `Request changes` as appropriate and then `Submit Review`.
+Then click one of
 
-   * Comments on code start a "conversation" which can be resolved. It is up to the reviewer to resolve conversations. I'd encourage authors to use emoji reactions or comments to track their work.
-   * You can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong stage of the review to isolate changes.
+ * `Comment`: just general feedback or you're being nosey.
+ * `Approve`: this PR is worthy of main.
+ * `Request changes`: this needs a little work.
+ 
+as appropriate and then `Submit Review`.
+
+   * Comments on code start a "conversation" which can be resolved. It is up to the **reviewer** to resolve conversations. I'd encourage authors to use emoji reactions or comments to track their work.
+   * You can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong stage of the review to isolate changes, rather looking through the full diff.
 
 
 # Why do we review code?
@@ -78,7 +86,6 @@ By reviewing code, the authors and reviewers are brought together to solve a pro
 
 We don't want bugs in production code. Checking over the code before it's put into production is the best way to prevent this. But bugs do occur, we're only human.
 
-
 #### Quality and compliance:
 
 Here you'll be checking that code is maintainable and well formatted. You'll also want to check that the outputs meet a minimum standard, for example, does your model give vaguely sensible predictions?
@@ -93,22 +100,25 @@ When reviewing code, it's a good idea to follow a mental checklist. I find the f
   * Does the code _actually run_?
   * Can I tell what this code should do?
   * Does the code do what it should do?
-  * Does the code have clear, maintainable structure? I think [Chapter 3](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/code.html) of _Best Coding Practices for R_ is a good guide.
-  * Is the code difficult to read, overly complex or full of repetition?
+  * Are models giving reasonable outputs?
+  * Are graphs accessible to those with colour vision deficiency or other visual impairments?
+    * I really like [{colorblindr}](https://github.com/clauswilke/colorblindr) for checking this!
   * Is it clear how to use or run the code?
+  * Does the code have clear, maintainable structure?
+    * I think [Chapter 3](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/code.html) of _Best Coding Practices for R_ is a good guide.
+  * Is the code difficult to read, overly complex or full of repetition?
   * Does the code have a consistent style with evocative function and variable names?
-  * Are there any merge conflicts?
 
 # What does the reviewer do?
 
-#### Asks questions to help the reviewer understand the code.
+#### Asks questions to help the reviewer understand the code
 
 This is inherently tied to the rest of code review, but I think a good way to review code is via questions. More on this later.
 
 Ask the code author about why they've implemented their methods in a certain way, ask them if they think there are better ways to do things, ask them to clarify chunks of code with unclear meaning, output or purpose and ask if their implementations are robust to future changes.
 
 
-#### Identifies (potential) problems in the code:
+#### Identifies (potential) problems in the code
 
 As a reviewer, you need to figure out if the code meets some _absolute minimum_ requirements. To do this, you're going to look for
 
@@ -117,9 +127,9 @@ As a reviewer, you need to figure out if the code meets some _absolute minimum_ 
   * Incorrect mathematics/statistics.
   * Have we accidentally pushed secure or sensitive information?   
 
-Anything which is buggy, incorrect or insecure really shouldn't be merged into main.
+Anything which is buggy, incorrect or insecure should not enter main.
 
-#### Suggests ways to improve the code:
+#### Suggests ways to improve the code
 
 You should not just be looking for things that are wrong with the code, but also ways to improve the health of the code and your models:
 
@@ -128,33 +138,33 @@ You should not just be looking for things that are wrong with the code, but also
   * Suggest removing redundant or excessive features.
 
  
-#### Provides nit picks:
+#### Provides nit picks
 
-Nit picks, or just nits, are annoying (and something I do too much, sorry colleages), but they are invariably something a reviewer does.
+Nit picks, or just nits, are annoying (and something I do too much, sorry colleages), but they are an inevitable apart of code review
 
-Nits are usally small stylistic points. Examples include:
+Nits are usually small stylistic points. Examples include:
 
  * White space.
  * Variable/function names (this is arguably more than a nit!)
  * Positioning of brackets, choice of assignment operator, and other fairly inconsequential suggestions.
 
-In my team, we avoid this with [{lintr}](https://lintr.r-lib.org/), [{styler}](https://www.tidyverse.org/blog/2017/12/styler-1.0.0/) and agreeing on code style as a team. We ensure their usage via precommit hooks; R users may be interested in [{precommit}](https://github.com/lorenzwalthert/precommit).
+Pretty much all of this is avoided when a team adopts and enforces a style guide.
 
-As a reviewer, try to use nits sparingly. Nits are allowed, but try to keep the number of them small. They’re not a hill to die on.
+In my team, we use [{lintr}](https://lintr.r-lib.org/) and [{styler}](https://www.tidyverse.org/blog/2017/12/styler-1.0.0/) and to automate style guide checks. We ensure their usage via precommit hooks; R users may be interested in [{precommit}](https://github.com/lorenzwalthert/precommit).
 
-It can be a good idea to prefix your nit with “nit:” to make it clear that you're just being a pedant and the code author can probably ignore you.
+Nits are allowed, but do keep them to a minimum. They’re not a hill to die on.
 
-
+It can be a good idea to prefix your nit with “nit:” to make it clear that you're being pedantic.
 
 # How should the reviewers approach review?
 
-We're going to think here about how review code in a way which addresses concerns in a way which is as painless as possible. Those with an academic background will be familiar with _Reviewer 2_. Apoligies for any trauma I've just forced you to relive. We don't want to be like reviewer 2, but there is more to consider.
+We're going to think here about how review code in a way which addresses concerns in a way which is as painless as possible. Those with an academic background will be familiar with _Reviewer 2_. Apologies for any trauma I've just forced you to relive. We don't want to be like Reviewer 2, so how can we avoid that?
 
 #### Code review needs to be inclusive
 
 Senior and junior members should be performing code review. Distributing review across the team helps improve knowledge transfer, and gives team members the opportunity to become familiar with large parts of the code base.
 
-This also stops individual members of the team getting swamped with review. If all they do is review code, they're gonning be stroppy and probably provide bad reviews.
+This also stops individual members of the team getting swamped with review. If all they do is review code, they're going be stroppy and provide bad reviews.
 
 #### Do not allow deviations from the team style guide
 
@@ -182,15 +192,13 @@ Reviews in this style tend to ask for a clarification or be phrased such that th
 
 #### Tell people what they've done well!
 
-We should really use code review to _praise_ our team members too. I think this is something we (and definitely I) should do more often.
-
- 
+We should really use code review to _praise_ our team members too. I think this is something we (and definitely I) should do more often. Do take a little bit of time to let the reviewer know that they clearly worked hard, did something super clever or useful, or have written something really tidy and maintainable.
 
 ### Resolving stalemates
 
-Sometimes a reviewer and author can't agree on what the best solution to a problem is. This can lead to _very_ long games of GitHub ping-pong and grumpy team members. Here are possible scenarios, and the a suggested resolution.
+Sometimes a reviewer and author can't agree on what the best solution to a problem is. This can lead to _very_ long games of GitHub ping-pong and grumpy team members. Here are possible scenarios, and a suggested resolution.
 
-These really are guiding principles rather than strict rules. Use your judgement.
+These really are guiding principles rather than strict rules. Use your judgement. Think about what works for your team.
 
  
 #### The reviewer thinks that the PR is mostly good, but isn't perfect
@@ -202,7 +210,7 @@ Favour accepting imperfect PRs when when the PR improves the overall quality of:
 
 It's generally a good idea to just get things that are "good enough" in main. I'd suggest creating issues/tickets to make the additional improvements.
 
-For example, if you've got a functioning regression model, but there are potentially some missing interaction terms, I'd say get the okayish regression model in main, then investigate interaction terms as a seperate piece of work.
+For example, if you've got a functioning regression model, but there are potentially some missing interaction terms, I'd say get the okayish regression model in main, then investigate interaction terms as a separate piece of work.
 
 #### The author is overwhelmed with the number of changes
 
@@ -212,18 +220,24 @@ One way to help is for the reviewer could indicate how critical each request is 
   * Optional(/consider): I think this is a good idea. It's not a strict requirement.
   * FYI: I'm not expecting this now, it might even be out of scope. I do think you would find this interesting, or would find this to be a better way to tackle problems in the future.
   * Should: an essential fix, unless you can provide me with a compelling reason not to do this.
+  
+You can also construct pull requests which [merge into a branch other than main](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request#changing-the-branch-range-and-destination-repository) -- so you could actually make some of the fixes yourself and contribute to the pull request!
 
+<center>
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2RqYWFzbjg1Z2c0ODBzNzc4ODB3ZnYxbm5hMTZsejFmbGV3dGsweiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjHV0z8S7WM4MwnK/giphy.webp)
+
+</center>
 #### The author thinks a requested change will take too long to fix, or is out of scope
 
 Consider how much fix will improve the overall team output/code health. I'd also encourage the author to try to make the fix anyway. If it takes more than (say) 10 minutes, spin up a new issue to resolve when you have more time.
 
 #### The author and reviewer just can't agree on the best way forward
 
-Deciding factors should be the readability and maintainability of the two competing approaches -- I think this is especially true for analysts. We're mostly writing in high-level languages which aren't super fast.
+Deciding factors should be the readability and maintainability of the two competing approaches -- I think this is especially true for analysts. We're mostly writing in high-level languages which aren't super fast. If you write something super efficient but incredibly opaque, you're going to spend longer maintaining and understanding the code than you are actually running it. The [City of Amsterdam](https://amsterdam.github.io/guides/code-for-humans/) provides good rationale on this. Yeah, you read that correctly. I'd take the numbers they use with a pinch of salt, tune it to your team.
 
 However, if there _is_ a compelling performance increase in terms of memory or speed, where this is important, that may also be a deciding factor too.
 
-It's also worth setting up a (video) meeting about the code. Communication nuiances can get lost via a written format. Once you've done this, make a note of the main points/actions of the call somewhere in the pull request.
+It's also worth setting up a (video) meeting about the code. Communication nuances can get lost via a written format. Once you've done this, make a note of the main points/actions of the call somewhere in the pull request.
 
 #### Consider bringing in an additional reviewer
 
@@ -233,14 +247,11 @@ Sometimes, two people just really struggle to come to an agreement. I think in t
   * The second reviewer's decision is the one you go with
 
  
+# In review
 
- 
+Code review is a really critical part a modelling team's quality assurance process. By striving to be a good reviewer, you're going to make this a much better process for all involved.
 
- 
-
-Further reading / references
-
- 
+## Further reading
 
 * [Google's engineering practices](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
 
