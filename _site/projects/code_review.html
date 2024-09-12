@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2024-09-11">
-<meta name="description" content="todo">
+<meta name="description" content="Software developers have some really good approaches to code review. Here’s a data scientists plea to listen to the software developers!">
 
 <title>Jack Kennedy - Code review for statisticians, data scientists &amp; modellers</title>
 <style>
@@ -104,7 +104,7 @@ cookieconsent.run({
 
 
 <meta name="twitter:title" content="Jack Kennedy - Code review for statisticians, data scientists &amp; modellers">
-<meta name="twitter:description" content="todo">
+<meta name="twitter:description" content="Software developers have some really good approaches to code review. Here’s a data scientists plea to listen to the software developers!">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -152,10 +152,7 @@ cookieconsent.run({
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
   <ul>
-  <li><a href="#the-who-what-why-and-how-of-code-review" id="toc-the-who-what-why-and-how-of-code-review" class="nav-link active" data-scroll-target="#the-who-what-why-and-how-of-code-review">The who, what, why and how of code review</a>
-  <ul class="collapse">
-  <li><a href="#who-is-this-for" id="toc-who-is-this-for" class="nav-link" data-scroll-target="#who-is-this-for">Who is this for?</a></li>
-  </ul></li>
+  <li><a href="#who-is-this-for" id="toc-who-is-this-for" class="nav-link active" data-scroll-target="#who-is-this-for">Who is this for?</a></li>
   <li><a href="#how-to-review-code" id="toc-how-to-review-code" class="nav-link" data-scroll-target="#how-to-review-code">How to review code</a>
   <ul class="collapse">
   <li><a href="#literal-code-review" id="toc-literal-code-review" class="nav-link" data-scroll-target="#literal-code-review">Literal code review</a></li>
@@ -166,6 +163,10 @@ cookieconsent.run({
   <li><a href="#how-should-the-reviewers-approach-review" id="toc-how-should-the-reviewers-approach-review" class="nav-link" data-scroll-target="#how-should-the-reviewers-approach-review">How should the reviewers approach review?</a>
   <ul class="collapse">
   <li><a href="#resolving-stalemates" id="toc-resolving-stalemates" class="nav-link" data-scroll-target="#resolving-stalemates">Resolving stalemates</a></li>
+  </ul></li>
+  <li><a href="#in-review" id="toc-in-review" class="nav-link" data-scroll-target="#in-review">In review</a>
+  <ul class="collapse">
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -181,7 +182,7 @@ cookieconsent.run({
 </div>
 <div>
   <div class="description">
-    todo
+    Software developers have some really good approaches to code review. Here’s a data scientists plea to listen to the software developers!
   </div>
 </div>
 <div class="quarto-title-meta">
@@ -194,10 +195,8 @@ cookieconsent.run({
   </div>
 </header> <main class="content" id="quarto-document-content">
 
-<section id="the-who-what-why-and-how-of-code-review" class="level1">
-<h1>The who, what, why and how of code review</h1>
-<section id="who-is-this-for" class="level2">
-<h2 data-anchor-id="who-is-this-for">Who is this for?</h2>
+<section id="who-is-this-for" class="level1">
+<h1>Who is this for?</h1>
 <p>I work as a data scientist alongside people who typically have academic backgrounds in statistics, public health, or the mathematical and statistical aspects of biology or ecology. Some of us have job titles relating to data science, other to mathematical and statistical modelling. None of us are software developers trade.</p>
 <p>However, we’re writing software all day. We’re writing mathematical/statistical models, creating data-driven products and doing data engineering. We quality assure all of this work via code review.</p>
 <p>The honest answer to <em>Who is this for?</em> is that this is for me. It’s for a previous version of myself who knew the mechanics of reviewing code, but could have exercised <s>a bit more</s> <em>much more</em> nuance.</p>
@@ -205,15 +204,19 @@ cookieconsent.run({
 <p>It doesn’t really matter what programming language you use, or whether you’re storing your code on GitHub, GitLab, Bitbucket or whatever else. However this will be biased towards R and GitHub because that’s what I use. The concepts are important here, not the precise toolkit.</p>
 <p>If you’re here, I’m going to assume you know roughly what a code review is, but it doesn’t hurt to have a quick refresher.</p>
 <p>Code review is a form of peer review. Let’s suppose you’ve written some code, <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">made a pull request</a> and then assigned a reviewer. The reviewer goes through your changes and looks for potential issues with the code, suggests improvements, and maybe says one or two nice things about the thing you’ve been grinding away at.</p>
-</section>
+<p>I’d also like to be upfront here and say there is very little original thought going into this. Software developers have written a lot of good content on what makes good code review. I’ll link to some further reading and inspiration and the end. The aim here is to</p>
+<ul>
+<li>Bring good review practice to those in analytical roles.</li>
+<li>Communicate this good practice in a way which works for those in analytical roles.</li>
+</ul>
 </section>
 <section id="how-to-review-code" class="level1">
 <h1>How to review code</h1>
 <p>In our team, we provide a formal review via GitHub. Let’s suppose you’ve opened a pull request, marked it as ready and assigned one or more reviewers.</p>
-<p>We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes. If you’re comfortable with annotating someone else’s code via a pull request, <a href="code_review.html#why-do-we-review-code">skip ahead</a></p>
+<p>We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes. If you’re comfortable with annotating someone else’s code via a pull request, <a href="code_review.html#why-do-we-review-code">skip ahead</a>.</p>
 <section id="literal-code-review" class="level2">
 <h2 data-anchor-id="literal-code-review">Literal code review</h2>
-<p>Here you’re going to look at the code, maybe run or interact with it, then make comments about the code via the pull request mechanisms.</p>
+<p>Here you’re going to look at the code, maybe run or interact with it, then make comments about the code via the pull request mechanisms. I tend to start by having a skim over the code to look for general structure, then spend some time running and interacting with the code later to really get into the guts of it.</p>
 <section id="annotating-code" class="level4">
 <h4 data-anchor-id="annotating-code">Annotating code</h4>
 <p>To make a comment, click the <code>+</code> symbol to comment on a single line of code. Click a <code>+</code> and drag down to comment on multiple lines.</p>
@@ -235,16 +238,22 @@ cookieconsent.run({
 </figure>
 </div>
 <ul>
-<li>Click <code>Add single comment</code> if the review is very short, informal or you’re just being nosey. <code>Start review</code> is better for longer or more formal reviews.</li>
+<li>Click <code>Add single comment</code> if the review is informal or you’re just being nosey. <code>Start review</code> is better formal reviews.</li>
 </ul>
 </section>
 <section id="submitting-review" class="level4">
 <h4 data-anchor-id="submitting-review">Submitting review</h4>
 <p>Once you’ve finished reviewing, click <code>Review changes</code> in the top right of the browser winder. Take some time to write encouraging feedback in the comment box.</p>
-<p>Then click one of <code>Comment</code>, <code>Approve</code> or <code>Request changes</code> as appropriate and then <code>Submit Review</code>.</p>
+<p>Then click one of</p>
 <ul>
-<li>Comments on code start a “conversation” which can be resolved. It is up to the reviewer to resolve conversations. I’d encourage authors to use emoji reactions or comments to track their work.</li>
-<li>You can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong stage of the review to isolate changes.</li>
+<li><code>Comment</code>: just general feedback or you’re being nosey.</li>
+<li><code>Approve</code>: this PR is worthy of main.</li>
+<li><code>Request changes</code>: this needs a little work.</li>
+</ul>
+<p>as appropriate and then <code>Submit Review</code>.</p>
+<ul>
+<li>Comments on code start a “conversation” which can be resolved. It is up to the <strong>reviewer</strong> to resolve conversations. I’d encourage authors to use emoji reactions or comments to track their work.</li>
+<li>You can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong stage of the review to isolate changes, rather looking through the full diff.</li>
 </ul>
 </section>
 </section>
@@ -275,22 +284,29 @@ cookieconsent.run({
 <li>Does the code <em>actually run</em>?</li>
 <li>Can I tell what this code should do?</li>
 <li>Does the code do what it should do?</li>
-<li>Does the code have clear, maintainable structure? I think <a href="https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/code.html">Chapter 3</a> of <em>Best Coding Practices for R</em> is a good guide.</li>
-<li>Is the code difficult to read, overly complex or full of repetition?</li>
+<li>Are models giving reasonable outputs?</li>
+<li>Are graphs accessible to those with colour vision deficiency or other visual impairments?
+<ul>
+<li>I really like <a href="https://github.com/clauswilke/colorblindr">{colorblindr}</a> for checking this!</li>
+</ul></li>
 <li>Is it clear how to use or run the code?</li>
+<li>Does the code have clear, maintainable structure?
+<ul>
+<li>I think <a href="https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/code.html">Chapter 3</a> of <em>Best Coding Practices for R</em> is a good guide.</li>
+</ul></li>
+<li>Is the code difficult to read, overly complex or full of repetition?</li>
 <li>Does the code have a consistent style with evocative function and variable names?</li>
-<li>Are there any merge conflicts?</li>
 </ul>
 </section>
 <section id="what-does-the-reviewer-do" class="level1">
 <h1>What does the reviewer do?</h1>
-<section id="asks-questions-to-help-the-reviewer-understand-the-code." class="level4">
-<h4 data-anchor-id="asks-questions-to-help-the-reviewer-understand-the-code.">Asks questions to help the reviewer understand the code.</h4>
+<section id="asks-questions-to-help-the-reviewer-understand-the-code" class="level4">
+<h4 data-anchor-id="asks-questions-to-help-the-reviewer-understand-the-code">Asks questions to help the reviewer understand the code</h4>
 <p>This is inherently tied to the rest of code review, but I think a good way to review code is via questions. More on this later.</p>
 <p>Ask the code author about why they’ve implemented their methods in a certain way, ask them if they think there are better ways to do things, ask them to clarify chunks of code with unclear meaning, output or purpose and ask if their implementations are robust to future changes.</p>
 </section>
 <section id="identifies-potential-problems-in-the-code" class="level4">
-<h4 data-anchor-id="identifies-potential-problems-in-the-code">Identifies (potential) problems in the code:</h4>
+<h4 data-anchor-id="identifies-potential-problems-in-the-code">Identifies (potential) problems in the code</h4>
 <p>As a reviewer, you need to figure out if the code meets some <em>absolute minimum</em> requirements. To do this, you’re going to look for</p>
 <ul>
 <li>Does the code do what it should do?</li>
@@ -298,10 +314,10 @@ cookieconsent.run({
 <li>Incorrect mathematics/statistics.</li>
 <li>Have we accidentally pushed secure or sensitive information?</li>
 </ul>
-<p>Anything which is buggy, incorrect or insecure really shouldn’t be merged into main.</p>
+<p>Anything which is buggy, incorrect or insecure should not enter main.</p>
 </section>
 <section id="suggests-ways-to-improve-the-code" class="level4">
-<h4 data-anchor-id="suggests-ways-to-improve-the-code">Suggests ways to improve the code:</h4>
+<h4 data-anchor-id="suggests-ways-to-improve-the-code">Suggests ways to improve the code</h4>
 <p>You should not just be looking for things that are wrong with the code, but also ways to improve the health of the code and your models:</p>
 <ul>
 <li>Suggest refactors/changes to improve clarity of code or documentation, reproducibility and/or performance.</li>
@@ -310,26 +326,27 @@ cookieconsent.run({
 </ul>
 </section>
 <section id="provides-nit-picks" class="level4">
-<h4 data-anchor-id="provides-nit-picks">Provides nit picks:</h4>
-<p>Nit picks, or just nits, are annoying (and something I do too much, sorry colleages), but they are invariably something a reviewer does.</p>
-<p>Nits are usally small stylistic points. Examples include:</p>
+<h4 data-anchor-id="provides-nit-picks">Provides nit picks</h4>
+<p>Nit picks, or just nits, are annoying (and something I do too much, sorry colleagues), but they are an inevitable apart of code review</p>
+<p>Nits are usually small stylistic points. Examples include:</p>
 <ul>
 <li>White space.</li>
 <li>Variable/function names (this is arguably more than a nit!)</li>
 <li>Positioning of brackets, choice of assignment operator, and other fairly inconsequential suggestions.</li>
 </ul>
-<p>In my team, we avoid this with <a href="https://lintr.r-lib.org/">{lintr}</a>, <a href="https://www.tidyverse.org/blog/2017/12/styler-1.0.0/">{styler}</a> and agreeing on code style as a team. We ensure their usage via precommit hooks; R users may be interested in <a href="https://github.com/lorenzwalthert/precommit">{precommit}</a>.</p>
-<p>As a reviewer, try to use nits sparingly. Nits are allowed, but try to keep the number of them small. They’re not a hill to die on.</p>
-<p>It can be a good idea to prefix your nit with “nit:” to make it clear that you’re just being a pedant and the code author can probably ignore you.</p>
+<p>Pretty much all of this is avoided when a team adopts and enforces a style guide.</p>
+<p>In my team, we use <a href="https://lintr.r-lib.org/">{lintr}</a> and <a href="https://www.tidyverse.org/blog/2017/12/styler-1.0.0/">{styler}</a> and to automate style guide checks. We ensure their usage via precommit hooks; R users may be interested in <a href="https://github.com/lorenzwalthert/precommit">{precommit}</a>.</p>
+<p>Nits are allowed, but do keep them to a minimum. They’re not a hill to die on.</p>
+<p>It can be a good idea to prefix your nit with “nit:” to make it clear that you’re being pedantic.</p>
 </section>
 </section>
 <section id="how-should-the-reviewers-approach-review" class="level1">
 <h1>How should the reviewers approach review?</h1>
-<p>We’re going to think here about how review code in a way which addresses concerns in a way which is as painless as possible. Those with an academic background will be familiar with <em>Reviewer 2</em>. Apoligies for any trauma I’ve just forced you to relive. We don’t want to be like reviewer 2, but there is more to consider.</p>
+<p>We’re going to think here about how review code in a way which addresses concerns in a way which is as painless as possible. Those with an academic background will be familiar with <em>Reviewer 2</em>. Apologies for any trauma I’ve just forced you to relive. We don’t want to be like Reviewer 2, so how can we avoid that?</p>
 <section id="code-review-needs-to-be-inclusive" class="level4">
 <h4 data-anchor-id="code-review-needs-to-be-inclusive">Code review needs to be inclusive</h4>
 <p>Senior and junior members should be performing code review. Distributing review across the team helps improve knowledge transfer, and gives team members the opportunity to become familiar with large parts of the code base.</p>
-<p>This also stops individual members of the team getting swamped with review. If all they do is review code, they’re gonning be stroppy and probably provide bad reviews.</p>
+<p>This also stops individual members of the team getting swamped with review. If all they do is review code, they’re going be stroppy and provide bad reviews.</p>
 </section>
 <section id="do-not-allow-deviations-from-the-team-style-guide" class="level4">
 <h4 data-anchor-id="do-not-allow-deviations-from-the-team-style-guide">Do not allow deviations from the team style guide</h4>
@@ -351,12 +368,12 @@ cookieconsent.run({
 </section>
 <section id="tell-people-what-theyve-done-well" class="level4">
 <h4 data-anchor-id="tell-people-what-theyve-done-well">Tell people what they’ve done well!</h4>
-<p>We should really use code review to <em>praise</em> our team members too. I think this is something we (and definitely I) should do more often.</p>
+<p>We should really use code review to <em>praise</em> our team members too. I think this is something we (and definitely I) should do more often. Do take a little bit of time to let the reviewer know that they clearly worked hard, did something super clever or useful, or have written something really tidy and maintainable.</p>
 </section>
 <section id="resolving-stalemates" class="level3">
 <h3 data-anchor-id="resolving-stalemates">Resolving stalemates</h3>
-<p>Sometimes a reviewer and author can’t agree on what the best solution to a problem is. This can lead to <em>very</em> long games of GitHub ping-pong and grumpy team members. Here are possible scenarios, and the a suggested resolution.</p>
-<p>These really are guiding principles rather than strict rules. Use your judgement.</p>
+<p>Sometimes a reviewer and author can’t agree on what the best solution to a problem is. This can lead to <em>very</em> long games of GitHub ping-pong and grumpy team members. Here are possible scenarios, and a suggested resolution.</p>
+<p>These really are guiding principles rather than strict rules. Use your judgement. Think about what works for your team.</p>
 <section id="the-reviewer-thinks-that-the-pr-is-mostly-good-but-isnt-perfect" class="level4">
 <h4 data-anchor-id="the-reviewer-thinks-that-the-pr-is-mostly-good-but-isnt-perfect">The reviewer thinks that the PR is mostly good, but isn’t perfect</h4>
 <p>Favour accepting imperfect PRs when when the PR improves the overall quality of:</p>
@@ -365,7 +382,7 @@ cookieconsent.run({
 <li>The codebase.</li>
 </ul>
 <p>It’s generally a good idea to just get things that are “good enough” in main. I’d suggest creating issues/tickets to make the additional improvements.</p>
-<p>For example, if you’ve got a functioning regression model, but there are potentially some missing interaction terms, I’d say get the okayish regression model in main, then investigate interaction terms as a seperate piece of work.</p>
+<p>For example, if you’ve got a functioning regression model, but there are potentially some missing interaction terms, I’d say get the okayish regression model in main, then investigate interaction terms as a separate piece of work.</p>
 </section>
 <section id="the-author-is-overwhelmed-with-the-number-of-changes" class="level4">
 <h4 data-anchor-id="the-author-is-overwhelmed-with-the-number-of-changes">The author is overwhelmed with the number of changes</h4>
@@ -376,6 +393,10 @@ cookieconsent.run({
 <li>FYI: I’m not expecting this now, it might even be out of scope. I do think you would find this interesting, or would find this to be a better way to tackle problems in the future.</li>
 <li>Should: an essential fix, unless you can provide me with a compelling reason not to do this.</li>
 </ul>
+<p>You can also construct pull requests which <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request#changing-the-branch-range-and-destination-repository">merge into a branch other than main</a> – so you could actually make some of the fixes yourself and contribute to the pull request!</p>
+<center>
+<p><img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2RqYWFzbjg1Z2c0ODBzNzc4ODB3ZnYxbm5hMTZsejFmbGV3dGsweiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjHV0z8S7WM4MwnK/giphy.webp" class="img-fluid"></p>
+</center>
 </section>
 <section id="the-author-thinks-a-requested-change-will-take-too-long-to-fix-or-is-out-of-scope" class="level4">
 <h4 data-anchor-id="the-author-thinks-a-requested-change-will-take-too-long-to-fix-or-is-out-of-scope">The author thinks a requested change will take too long to fix, or is out of scope</h4>
@@ -383,27 +404,33 @@ cookieconsent.run({
 </section>
 <section id="the-author-and-reviewer-just-cant-agree-on-the-best-way-forward" class="level4">
 <h4 data-anchor-id="the-author-and-reviewer-just-cant-agree-on-the-best-way-forward">The author and reviewer just can’t agree on the best way forward</h4>
-<p>Deciding factors should be the readability and maintainability of the two competing approaches – I think this is especially true for analysts. We’re mostly writing in high-level languages which aren’t super fast.</p>
+<p>Deciding factors should be the readability and maintainability of the two competing approaches – I think this is especially true for analysts. We’re mostly writing in high-level languages which aren’t super fast. If you write something super efficient but incredibly opaque, you’re going to spend longer maintaining and understanding the code than you are actually running it. The <a href="https://amsterdam.github.io/guides/code-for-humans/">City of Amsterdam</a> provides good rationale on this. Yeah, you read that correctly. I’d take the numbers they use with a pinch of salt, tune it to your team.</p>
 <p>However, if there <em>is</em> a compelling performance increase in terms of memory or speed, where this is important, that may also be a deciding factor too.</p>
-<p>It’s also worth setting up a (video) meeting about the code. Communication nuiances can get lost via a written format. Once you’ve done this, make a note of the main points/actions of the call somewhere in the pull request.</p>
+<p>It’s also worth setting up a (video) meeting about the code. Communication nuances can get lost via a written format. Once you’ve done this, make a note of the main points/actions of the call somewhere in the pull request.</p>
 </section>
 <section id="consider-bringing-in-an-additional-reviewer" class="level4">
 <h4 data-anchor-id="consider-bringing-in-an-additional-reviewer">Consider bringing in an additional reviewer</h4>
 <p>Sometimes, two people just really struggle to come to an agreement. I think in this case it’s best to just let someone else make the decision.</p>
 <ul>
-<li>Both give your reasonings to the additional reviewer</li>
+<li>Both give your reasons to the additional reviewer</li>
 <li>The second reviewer’s decision is the one you go with</li>
 </ul>
-<p>Further reading / references</p>
+</section>
+</section>
+</section>
+<section id="in-review" class="level1">
+<h1>In review</h1>
+<p>Code review is a really critical part a modelling team’s quality assurance process. By striving to be a good reviewer, you’re going to make this a much better process for all involved.</p>
+<section id="further-reading" class="level2">
+<h2 data-anchor-id="further-reading">Further reading</h2>
 <ul>
 <li><p><a href="https://google.github.io/eng-practices/review/reviewer/looking-for.html">Google’s engineering practices</a></p></li>
-<li><p><a href="https://about.gitlab.com/topics/version-control/what-is-code-review/">Gitlab blog: What is a code review?</a></p></li>
-<li><p><a href="https://stackoverflow.blog/2019/09/30/how-to-make-good-code-reviews-better/">Stackoverflow blog: How to Make Good Code Review Better</a></p></li>
+<li><p><a href="https://about.gitlab.com/topics/version-control/what-is-code-review/">GitLab blog: What is a code review?</a></p></li>
+<li><p><a href="https://stackoverflow.blog/2019/09/30/how-to-make-good-code-reviews-better/">Stack Overflow blog: How to Make Good Code Review Better</a></p></li>
 <li><p><a href="https://code-review.tidyverse.org/">Tidyteam code review principles</a></p></li>
 </ul>
 
 
-</section>
 </section>
 </section>
 </main> 
