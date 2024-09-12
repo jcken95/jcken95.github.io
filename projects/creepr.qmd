@@ -3,7 +3,7 @@
   subtitle: ""
   description: "It's just beepr but creepy"
   format: html
-  date: 11-09-2022
+  date: 2022-11-09
   about:
     template: marquee
 ---
