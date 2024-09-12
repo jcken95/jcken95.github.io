@@ -3,6 +3,7 @@
   listing:
     contents: projects
     type: grid
-    sort: date
+    sort: date desc
+    fields: [date, title]
 ---
   Here are my various contributions to society.

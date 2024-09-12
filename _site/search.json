@@ -28,10 +28,31 @@
     "text": "Get creeping\nI’ve put the package on github, thus you can install and run {creepr} in the following way\n\ndevtools::install_github(\"https://github.com/jcken95/creepr\")\ncreepr::creepr()\n\nThis will play a sound from my collated sounds at random. I’ve (to date) included a whopping 8 creepy sounds: “creature”, “eerie”, “intense”, “laugh”, “piano”, “piano2”, “ringing” and “strings”.\nA feature of this package is that, even if you close R whilst the sound is playing, the sound will not terminate with R. If you play a sound, then you’re committed to it. It’s like tops 15 seconds.\nHappy creeping!"
   },
   {
+    "objectID": "projects/code_review.html",
+    "href": "projects/code_review.html",
+    "title": "Code review for statisticians, data scientists & modellers",
+    "section": "",
+    "text": "I work as a data scientist alongside people who typically have academic backgrounds in statistics, epidemiology, or something of a similar feel. Some of us have job titles relating to data science, other to mathematical and statistical modelling. None of us are software developers by trade.\nHowever, we’re writing software all day. We’re writing mathematical/statistical models, creating data-driven products and doing data engineering. We quality assure all of this work via code review.\nThe honest answer to Who is this for? is that this is for me. It’s for a previous version of myself who knew the mechanics of reviewing code, but could have exercised a bit more much more nuance.\nThat being said, I think anyone working in some kind of modelling or analytical role, whose main output is some sort of mathematical or statistical analysis, but writes code to implement their models could find this useful.\nIt doesn’t really matter what programming language you use, or whether you’re storing your code on GitHub, GitLab, Bitbucket or whatever else. However this will be biased towards R and GitHub because that’s what I use. The concepts are important here, not the precise toolkit.\nIf you’re here, I’m going to assume you know roughly what a code review is, but it doesn’t hurt to have a quick refresher.\nCode review is a form of peer review. Let’s suppose you’ve written some code, made a pull request (PR) and then assigned a reviewer. The reviewer goes through your code and looks for potential issues with the code, suggests improvements, and maybe says one or two nice things about the thing you’ve been grinding away at.\nI’d also like to be upfront here and say there is very little original thought going into this. Software developers have written a lot of good content on what makes good code review. I’ll link to some further reading and inspiration and the end.\nMy aim here is to:\n\nBring good code review practice to those in analytical roles.\nCommunicate this good practice in a way which works for those in analytical roles."
+  },
+  {
+    "objectID": "projects/code_review.html#literal-code-review",
+    "href": "projects/code_review.html#literal-code-review",
+    "title": "Code review for statisticians, data scientists & modellers",
+    "section": "Literal code review",
+    "text": "Literal code review\nHere you’re going to look at the code, maybe run or interact with it, then make comments about the code via the PR mechanisms. I tend to start by having a skim over the code to look for general structure, then spend some time running and interacting with the code later to really get into the guts of it.\n\nAnnotating code\nTo make a comment, click the + symbol to comment on a single line of code. Click a + and drag down to comment on multiple lines.\n\n\n\nMaking a comment on a line of code.\n\n\n\nYou can write a general comment or question in the text box.\nClick the little +/- symbol (it looks a bit like a page 📄) to make a direction suggestion on the code. This is useful when it’s simply easier to make the fix, than telling someone how to make the fix.\nClicking the symbol again will let you make a new suggestion on the same line(s) of code. Handy when you think there are multiple ways forward.\n\n\n\n\nMaking a direct suggestion to code.\n\n\n\nClick Add single comment if the review is informal or you’re just being nosey. Start review is better formal reviews.\n\n\n\nSubmitting review\nOnce you’ve finished reviewing, click Review changes in the top right of the browser window. Take some time to write encouraging feedback in the comment box.\nThen click one of\n\nComment: just general feedback or you’re being nosey.\nApprove: this PR is worthy of main.\nRequest changes: this needs a little work.\n\nas appropriate and then Submit Review.\n\nComments on code start a “conversation” which can be resolved. It is up to the reviewer to resolve conversations.\nI’d encourage authors to use emoji reactions or responding to comments to track their work.\nYou can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong (review back-and-forth) stage of the review to isolate changes, rather looking through the entire PR again."
+  },
+  {
+    "objectID": "projects/code_review.html#further-reading",
+    "href": "projects/code_review.html#further-reading",
+    "title": "Code review for statisticians, data scientists & modellers",
+    "section": "Further reading",
+    "text": "Further reading\n\nGoogle’s engineering practices\nGitLab blog: What is a code review?\nStack Overflow blog: How to Make Good Code Review Better\nTidyteam code review principles"
+  },
+  {
     "objectID": "projects.html",
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Here are my various contributions to society.\n\n\n\n\n\n\n\n\n\n\ncreepr\n\n\nIt’s just beepr but creepy\n\n\n\n\n\nNov 9, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Here are my various contributions to society.\n\n\n\n\n\n\n\n\n\nCode review for statisticians, data scientists & modellers\n\n\n\nSep 12, 2024\n\n\n\n\n\n\n\n\n\n\n\ncreepr\n\n\n\nNov 9, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
