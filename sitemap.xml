@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jcken95.github.io/index.html</loc>
-    <lastmod>2024-04-23T09:43:43.172Z</lastmod>
+    <loc>https://jcken95.github.io/projects.html</loc>
+    <lastmod>2024-09-12T17:36:47.135Z</lastmod>
   </url>
   <url>
     <loc>https://jcken95.github.io/projects/creepr.html</loc>
-    <lastmod>2024-04-23T09:43:43.176Z</lastmod>
+    <lastmod>2024-09-12T17:36:47.135Z</lastmod>
   </url>
   <url>
-    <loc>https://jcken95.github.io/projects.html</loc>
-    <lastmod>2024-04-23T09:43:43.172Z</lastmod>
+    <loc>https://jcken95.github.io/projects/code_review.html</loc>
+    <lastmod>2024-09-12T17:36:47.135Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jcken95.github.io/index.html</loc>
+    <lastmod>2024-09-12T17:36:47.131Z</lastmod>
   </url>
 </urlset>

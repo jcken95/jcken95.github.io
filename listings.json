@@ -2,6 +2,7 @@
   {
     "listing": "/projects.html",
     "items": [
+      "/projects/code_review.html",
       "/projects/creepr.html"
     ]
   }

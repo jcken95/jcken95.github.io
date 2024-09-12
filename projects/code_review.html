@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-09-12">
+<meta name="description" content="Software developers have some really good approaches to code review. Here’s a data scientists plea to listen to the software developers!">
+
+<title>Code review for statisticians, data scientists &amp; modellers – Jack Kennedy</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-152699572-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
+
+
+<meta name="twitter:title" content="Code review for statisticians, data scientists &amp; modellers – Jack Kennedy">
+<meta name="twitter:description" content="Software developers have some really good approaches to code review. Here’s a data scientists plea to listen to the software developers!">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Jack Kennedy</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://jcken95.github.io/CV/kennedy-jack.pdf"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+  <ul>
+  <li><a href="#who-is-this-for" id="toc-who-is-this-for" class="nav-link active" data-scroll-target="#who-is-this-for">Who is this for?</a></li>
+  <li><a href="#how-to-review-code" id="toc-how-to-review-code" class="nav-link" data-scroll-target="#how-to-review-code">How to review code</a>
+  <ul class="collapse">
+  <li><a href="#literal-code-review" id="toc-literal-code-review" class="nav-link" data-scroll-target="#literal-code-review">Literal code review</a></li>
+  </ul></li>
+  <li><a href="#why-do-we-review-code" id="toc-why-do-we-review-code" class="nav-link" data-scroll-target="#why-do-we-review-code">Why do we review code?</a></li>
+  <li><a href="#what-is-a-reviewer-looking-for" id="toc-what-is-a-reviewer-looking-for" class="nav-link" data-scroll-target="#what-is-a-reviewer-looking-for">What is a reviewer looking for?</a></li>
+  <li><a href="#what-does-the-reviewer-do" id="toc-what-does-the-reviewer-do" class="nav-link" data-scroll-target="#what-does-the-reviewer-do">What does the reviewer do?</a></li>
+  <li><a href="#how-should-the-reviewers-approach-review" id="toc-how-should-the-reviewers-approach-review" class="nav-link" data-scroll-target="#how-should-the-reviewers-approach-review">How should the reviewers approach review?</a>
+  <ul class="collapse">
+  <li><a href="#resolving-stalemates" id="toc-resolving-stalemates" class="nav-link" data-scroll-target="#resolving-stalemates">Resolving stalemates</a></li>
+  </ul></li>
+  <li><a href="#in-review" id="toc-in-review" class="nav-link" data-scroll-target="#in-review">In review</a>
+  <ul class="collapse">
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<div class="quarto-about-marquee">
+  <div class="about-image-container">
+  </div>
+  <div class="about-contents">
+    <header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Code review for statisticians, data scientists &amp; modellers</h1>
+</div>
+<div>
+  <div class="description">
+    Software developers have some really good approaches to code review. Here’s a data scientists plea to listen to the software developers!
+  </div>
+</div>
+<div class="quarto-title-meta">
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 12, 2024</p>
+    </div>
+  </div>
+  </div>
+</header> <main class="content" id="quarto-document-content">
+
+<section id="who-is-this-for" class="level1">
+<h1>Who is this for?</h1>
+<p>I work as a data scientist alongside people who typically have academic backgrounds in statistics, epidemiology, or something of a similar feel. Some of us have job titles relating to data science, other to mathematical and statistical modelling. None of us are software developers by trade.</p>
+<p>However, we’re writing software all day. We’re writing mathematical/statistical models, creating data-driven products and doing data engineering. We quality assure all of this work via code review.</p>
+<p>The honest answer to <em>Who is this for?</em> is that this is for me. It’s for a previous version of myself who knew the mechanics of reviewing code, but could have exercised <s>a bit more</s> <em>much more</em> nuance.</p>
+<p>That being said, I think anyone working in some kind of modelling or analytical role, whose main output is some sort of mathematical or statistical analysis, but writes code to implement their models could find this useful.</p>
+<p>It doesn’t really matter what programming language you use, or whether you’re storing your code on GitHub, GitLab, Bitbucket or whatever else. However this will be biased towards R and GitHub because that’s what I use. The concepts are important here, not the precise toolkit.</p>
+<p>If you’re here, I’m going to assume you know roughly what a code review is, but it doesn’t hurt to have a quick refresher.</p>
+<p>Code review is a form of peer review. Let’s suppose you’ve written some code, <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">made a pull request</a> (PR) and then assigned a reviewer. The reviewer goes through your code and looks for potential issues with the code, suggests improvements, and maybe says one or two nice things about the thing you’ve been grinding away at.</p>
+<p>I’d also like to be upfront here and say there is very little original thought going into this. Software developers have written a lot of good content on what makes good code review. I’ll link to some further reading and inspiration and the end.</p>
+<p>My aim here is to:</p>
+<ul>
+<li>Bring good code review practice to those in analytical roles.</li>
+<li>Communicate this good practice in a way which works for those in analytical roles.</li>
+</ul>
+</section>
+<section id="how-to-review-code" class="level1">
+<h1>How to review code</h1>
+<p>In our team, we provide a formal review via GitHub. Let’s suppose you’ve opened a PR, marked it as ready and assigned one or more reviewers.</p>
+<p>We will first think about the literal act of reviewing code, and then later we will think about what the reviewer should look for and how they should approach requesting changes. If you’re comfortable with annotating someone else’s code in a PR, <a href="code_review.html#why-do-we-review-code">skip ahead</a>.</p>
+<section id="literal-code-review" class="level2">
+<h2 data-anchor-id="literal-code-review">Literal code review</h2>
+<p>Here you’re going to look at the code, maybe run or interact with it, then make comments about the code via the PR mechanisms. I tend to start by having a skim over the code to look for general structure, then spend some time running and interacting with the code later to really get into the guts of it.</p>
+<section id="annotating-code" class="level4">
+<h4 data-anchor-id="annotating-code">Annotating code</h4>
+<p>To make a comment, click the <code>+</code> symbol to comment on a single line of code. Click a <code>+</code> and drag down to comment on multiple lines.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="code_review/plus_symbol.png" class="img-fluid figure-img"></p>
+<figcaption>Making a comment on a line of code.</figcaption>
+</figure>
+</div>
+<ul>
+<li>You can write a general comment or question in the text box.</li>
+<li>Click the little <code>+/-</code> symbol (it looks a bit like a page 📄) to make a direction suggestion on the code. This is useful when it’s simply easier to make the fix, than telling someone how to make the fix.</li>
+<li>Clicking the symbol again will let you make a new suggestion on the <em>same</em> line(s) of code. Handy when you think there are multiple ways forward.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="code_review/example_suggest.png" class="img-fluid figure-img"></p>
+<figcaption>Making a direct suggestion to code.</figcaption>
+</figure>
+</div>
+<ul>
+<li>Click <code>Add single comment</code> if the review is informal or you’re just being nosey. <code>Start review</code> is better formal reviews.</li>
+</ul>
+</section>
+<section id="submitting-review" class="level4">
+<h4 data-anchor-id="submitting-review">Submitting review</h4>
+<p>Once you’ve finished reviewing, click <code>Review changes</code> in the top right of the browser window. Take some time to write encouraging feedback in the comment box.</p>
+<p>Then click one of</p>
+<ul>
+<li><code>Comment</code>: just general feedback or you’re being nosey.</li>
+<li><code>Approve</code>: this PR is worthy of main.</li>
+<li><code>Request changes</code>: this needs a little work.</li>
+</ul>
+<p>as appropriate and then <code>Submit Review</code>.</p>
+<ul>
+<li>Comments on code start a “conversation” which can be resolved. It is up to the <strong>reviewer</strong> to resolve conversations.</li>
+<li>I’d encourage authors to use emoji reactions or responding to comments to track their work.</li>
+<li>You can view changes incurred by a particular commit. Clicking the commit ID on the commit history (main page of the PR) will show you these changes. This is really useful in the ping-pong (review back-and-forth) stage of the review to isolate changes, rather looking through the entire PR again.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="why-do-we-review-code" class="level1">
+<h1>Why do we review code?</h1>
+<p>There is one fairly obvious answer to this question: to check the code works. But there are a whole host of benefits to teams performing code review.</p>
+<section id="knowledge-transfer-collaboration" class="level4">
+<h4 data-anchor-id="knowledge-transfer-collaboration">Knowledge transfer &amp; collaboration</h4>
+<p>Analysts have a broad range of backgrounds and experiences. The reviewer can learn from the PR author, and by making suggestions, the author can learn from the reviewer by inspecting their code, running it, and asking questions.</p>
+<p>Shared knowledge about the code base ensures there is not a single point of failure in the team: you <em>really</em> want your <a href="https://en.wikipedia.org/wiki/Bus_factor">bus number</a> to be bigger than one.</p>
+<p>By reviewing code, the authors and reviewers are brought together to solve a problem. It can even be a good idea to bring in a reviewer before the work is complete to get the author unstuck, or just provide a little guidance.</p>
+</section>
+<section id="squash-bugs-before-they-occur" class="level4">
+<h4 data-anchor-id="squash-bugs-before-they-occur">Squash bugs before they occur</h4>
+<p>We don’t want bugs in production code. Checking over the code before it’s put into production is the best way to prevent this. But bugs can still occur, we’re only human.</p>
+</section>
+<section id="quality-and-compliance" class="level4">
+<h4 data-anchor-id="quality-and-compliance">Quality and compliance</h4>
+<p>Here you’ll be checking that code is maintainable and well formatted. You’ll also want to check that the outputs meet a minimum standard, for example, does your model give vaguely sensible predictions? Does the graph going to the really important stakeholder look good? Have you rounded value in the table to a reasonable number of significant figures or are we really going to tell the CEO that we’re forecasting a profit of £103,255.5599885255 next week?</p>
+<p>There’s also a security aspect here: by reviewing code, we provide a guard against malice. This should <em>never</em> be a problem, but nasty people do have jobs, a little code review protects against this.</p>
+</section>
+</section>
+<section id="what-is-a-reviewer-looking-for" class="level1">
+<h1>What is a reviewer looking for?</h1>
+<p>When reviewing code, it’s a good idea to follow a mental checklist. I find the following works well for me and the team I’m part of:</p>
+<ul>
+<li>Does the code <em>actually run</em>?</li>
+<li>Can I tell what this code should do?</li>
+<li>Does the code do what it should do?</li>
+<li>Are models giving reasonable outputs?</li>
+<li>Are graphs accessible to those with colour vision deficiency or other visual impairments?
+<ul>
+<li>I really like <a href="https://github.com/clauswilke/colorblindr">{colorblindr}</a> for checking this!</li>
+</ul></li>
+<li>Is it clear how to use or run the code?</li>
+<li>Does the code have clear, maintainable structure?
+<ul>
+<li>I think <a href="https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/code.html">Chapter 3</a> of <em>Best Coding Practices for R</em> is a good guide.</li>
+</ul></li>
+<li>Is the code difficult to read, overly complex or full of repetition?</li>
+<li>Does the code have a consistent style with evocative function and variable names?</li>
+</ul>
+</section>
+<section id="what-does-the-reviewer-do" class="level1">
+<h1>What does the reviewer do?</h1>
+<section id="asks-questions-to-help-the-reviewer-understand-the-code" class="level4">
+<h4 data-anchor-id="asks-questions-to-help-the-reviewer-understand-the-code">Asks questions to help the reviewer understand the code</h4>
+<p>This is inherently tied to the rest of code review, but I think a good way to review code is via questioning. More on this later.</p>
+<p>Ask the code author about why they’ve implemented their methods in a certain way, ask them if they think there are better ways to do things, ask them to clarify chunks of code with unclear meaning, output or purpose and ask if their implementations are robust to future changes.</p>
+</section>
+<section id="identifies-potential-problems-in-the-code" class="level4">
+<h4 data-anchor-id="identifies-potential-problems-in-the-code">Identifies (potential) problems in the code</h4>
+<p>As a reviewer, you need to figure out if the code meets some <em>absolute minimum</em> requirements. To do this, you’re going to look for</p>
+<ul>
+<li>Does the code do what it should do?</li>
+<li>Bugs (or potential future bugs).</li>
+<li>Incorrect mathematics/statistics.</li>
+<li>Have we accidentally pushed secure or sensitive information?</li>
+</ul>
+<p>Anything which is buggy, incorrect or insecure should not enter main.</p>
+</section>
+<section id="suggests-ways-to-improve-the-code" class="level4">
+<h4 data-anchor-id="suggests-ways-to-improve-the-code">Suggests ways to improve the code</h4>
+<p>You should not just be looking for things that are wrong with the code, but also ways to improve the health of the code and your models:</p>
+<ul>
+<li>Suggest refactors/changes to improve clarity of code or documentation, reproducibility and/or performance.</li>
+<li>Suggest adding useful features.</li>
+<li>Suggest removing redundant or excessive features.</li>
+</ul>
+</section>
+<section id="provides-nit-picks" class="level4">
+<h4 data-anchor-id="provides-nit-picks">Provides nit picks</h4>
+<p>Nit picks, or just nits, are annoying (and something I do too much, sorry colleagues), but they are an inevitable apart of code review</p>
+<p>Nits are usually small stylistic points. Examples include:</p>
+<ul>
+<li>White space.</li>
+<li>Variable/function names (this is arguably more than a nit!)</li>
+<li>Positioning of brackets, choice of assignment operator, and other fairly inconsequential suggestions.</li>
+</ul>
+<p>Pretty much all of this is avoided when a team adopts and enforces a style guide.</p>
+<p>In my team, we use <a href="https://lintr.r-lib.org/">{lintr}</a> and <a href="https://www.tidyverse.org/blog/2017/12/styler-1.0.0/">{styler}</a> and to automate style guide checks. We ensure their usage via precommit hooks; R users may be interested in <a href="https://github.com/lorenzwalthert/precommit">{precommit}</a>.</p>
+<p>Nits are allowed, but do keep them to a minimum. They’re not a hill to die on.</p>
+<p>It can be a good idea to prefix your nit with “nit:” to make it clear that you’re being pedantic.</p>
+</section>
+</section>
+<section id="how-should-the-reviewers-approach-review" class="level1">
+<h1>How should the reviewers approach review?</h1>
+<p>We’re going to think here about how review code in a way which addresses concerns in a way which is as painless as possible. Those with an academic background will be familiar with <em>Reviewer 2</em>. Apologies for any trauma I’ve just forced you to relive. We don’t want to be like Reviewer 2, so how can we avoid that?</p>
+<section id="code-review-needs-to-be-inclusive" class="level4">
+<h4 data-anchor-id="code-review-needs-to-be-inclusive">Code review needs to be inclusive</h4>
+<p>Senior and junior members should be performing code review. Distributing review across the team helps improve knowledge transfer, and gives team members the opportunity to become familiar with large parts of the code base.</p>
+<p>This also stops individual members of the team getting swamped with review. If all they do is review code, they’re going be stroppy and provide bad reviews.</p>
+</section>
+<section id="do-not-allow-deviations-from-the-team-style-guide" class="level4">
+<h4 data-anchor-id="do-not-allow-deviations-from-the-team-style-guide">Do not allow deviations from the team style guide</h4>
+<p>My team adopted the <a href="https://style.tidyverse.org/">tidyverse</a> style guide, with some minor tweaks. It doesn’t really matter which style guide you use, just pick one that’s readable.</p>
+<p>Adopting a style guide avoids nits, makes code easier to understand, and because we know what to expect, it ultimately makes everyone’s life easier.</p>
+<p>However, I think it’s <em>okay</em> to be pragmatic about the style guide in a rapid response. If you’re regularly sticking to the style guide, you’ll be using it automatically anyway. But if there are problems, do spin up a second PR which cleans up the code as soon as you can.</p>
+<p>If a violation of the style guide is a big fix, because, for example, you need to quickly make changes to a rarely maintained part of the code base, a separate ticket or issue for this is okay too.</p>
+</section>
+<section id="be-kind-when-reviewing-code" class="level4">
+<h4 data-anchor-id="be-kind-when-reviewing-code">Be kind when reviewing code</h4>
+<p>Sometimes code review can come across as blunt – we’re all really busy, it’s easier to write short, direct comments. Do try to avoid this, but it can be tricky. Reviewers should try their hardest not to be blunt, but authors should bear this in mind.</p>
+<p>You can avoid being blunt by breaking up review sessions. Take your own patience into account, but if you’re reviewing for an hour or more, you’re probably going to start cutting corners and getting grumpy.</p>
+<p>If you find yourself being blunt, grumpy or otherwise unsavoury, <a href="https://github.com/owenjonesuob">Owen</a> recommends having a cup of tea before finalising your review. I think he’s right.</p>
+</section>
+<section id="favour-asking-open-ended-questions-instead-of-making-opinionated-or-strong-statements" class="level4">
+<h4 data-anchor-id="favour-asking-open-ended-questions-instead-of-making-opinionated-or-strong-statements">Favour asking open ended questions instead of making opinionated, or strong statements</h4>
+<p>You can offer potential improvements or solutions which could be an improvement, without assuming that your suggestion is the best way forward.</p>
+<p>Reviews in this style tend to ask for a clarification or be phrased such that the reviewer is missing some context or knowledge.</p>
+</section>
+<section id="tell-people-what-theyve-done-well" class="level4">
+<h4 data-anchor-id="tell-people-what-theyve-done-well">Tell people what they’ve done well!</h4>
+<p>We should really use code review to <em>praise</em> our team members too. I think this is something we (and definitely I) should do more often. Do take a little bit of time to let the reviewer know that they clearly worked hard, did something super clever or useful, or have written something really tidy and maintainable.</p>
+</section>
+<section id="resolving-stalemates" class="level3">
+<h3 data-anchor-id="resolving-stalemates">Resolving stalemates</h3>
+<p>Sometimes a reviewer and author can’t agree on what the best solution to a problem is. This can lead to <em>very</em> long games of GitHub ping-pong and grumpy team members. Here are possible scenarios, and a suggested resolution.</p>
+<p>These really are guiding principles rather than strict rules. Use your judgement. Think about what works for your team.</p>
+<section id="the-reviewer-thinks-that-the-pr-is-mostly-good-but-isnt-perfect" class="level4">
+<h4 data-anchor-id="the-reviewer-thinks-that-the-pr-is-mostly-good-but-isnt-perfect">The reviewer thinks that the PR is mostly good, but isn’t perfect</h4>
+<p>Favour accepting imperfect PRs when when the PR improves the overall quality of:</p>
+<ul>
+<li>Team outputs.</li>
+<li>The codebase.</li>
+</ul>
+<p>It’s generally a good idea to approve a PR when it is “good enough”. I’d suggest creating issues/tickets to make the additional improvements where necessary.</p>
+<p>For example, if you’ve got a functioning regression model, but there are potentially some missing interaction terms, I’d say get the okayish regression model in main, then investigate interaction terms as a separate piece of work.</p>
+</section>
+<section id="the-author-is-overwhelmed-with-the-number-of-changes" class="level4">
+<h4 data-anchor-id="the-author-is-overwhelmed-with-the-number-of-changes">The author is overwhelmed with the number of changes</h4>
+<p>One way to help is for the reviewer could indicate how critical each request is (this could even be done in the first round of review):</p>
+<ul>
+<li>Nit: very minor change.</li>
+<li>Optional(/consider): I think this is a good idea. It’s not a strict requirement.</li>
+<li>FYI: I’m not expecting this now, it might even be out of scope. I do think you would find this interesting, or would find this to be a better way to tackle problems in the future.</li>
+<li>Should: an essential fix, unless you can provide me with a compelling reason not to.</li>
+</ul>
+<p>You can also construct PRs which <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request#changing-the-branch-range-and-destination-repository">merge into a branch other than main</a> – so you could actually make some of the fixes yourself and contribute to the PR!</p>
+<center>
+<p><img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2RqYWFzbjg1Z2c0ODBzNzc4ODB3ZnYxbm5hMTZsejFmbGV3dGsweiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjHV0z8S7WM4MwnK/giphy.webp" class="img-fluid"></p>
+</center>
+</section>
+<section id="the-author-thinks-a-requested-change-will-take-too-long-to-fix-or-is-out-of-scope" class="level4">
+<h4 data-anchor-id="the-author-thinks-a-requested-change-will-take-too-long-to-fix-or-is-out-of-scope">The author thinks a requested change will take too long to fix, or is out of scope</h4>
+<p>Consider how much fix will improve the overall team output/code health. I’d encourage the author to try to make the fix anyway. If it takes more than (say) 10 minutes, spin up a new issue to resolve when you have more time.</p>
+</section>
+<section id="the-author-and-reviewer-just-cant-agree-on-the-best-way-forward" class="level4">
+<h4 data-anchor-id="the-author-and-reviewer-just-cant-agree-on-the-best-way-forward">The author and reviewer just can’t agree on the best way forward</h4>
+<p>Deciding factors should be the readability and maintainability of the two competing approaches – I think this is especially true for those in analytical roles. We’re mostly writing in high-level languages which aren’t super fast. If you write something super efficient but incredibly opaque, you’re going to spend longer maintaining and understanding the code than you are actually running it. The <a href="https://amsterdam.github.io/guides/code-for-humans/">City of Amsterdam</a> provides good rationale on this. Yeah, you read that correctly. I’d take the numbers they use with a pinch of salt, tune it to your team.</p>
+<p>However, if there <em>is</em> a compelling performance increase in terms of memory or speed, where this is important, then consider this a deciding factor.</p>
+<p>It’s also worth setting up a (video) meeting about the code. Communication nuances can get lost in a written format. Once you’ve had your chat or call, make a note of the main points/actions of the call somewhere in the PR.</p>
+</section>
+<section id="consider-bringing-in-an-additional-reviewer" class="level4">
+<h4 data-anchor-id="consider-bringing-in-an-additional-reviewer">Consider bringing in an additional reviewer</h4>
+<p>Sometimes, two people just really struggle to come to an agreement. I think in this case it’s best to just let someone else make the decision.</p>
+<ul>
+<li>Both give your reasons to the additional reviewer.</li>
+<li>The second reviewer’s decision is the one you go with.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="in-review" class="level1">
+<h1>In review</h1>
+<p>Code review is a really critical part a modelling team’s quality assurance process. By striving to be a good reviewer, you’re going to make this a much better process for all involved.</p>
+<section id="further-reading" class="level2">
+<h2 data-anchor-id="further-reading">Further reading</h2>
+<ul>
+<li><p><a href="https://google.github.io/eng-practices/review/reviewer/looking-for.html">Google’s engineering practices</a></p></li>
+<li><p><a href="https://about.gitlab.com/topics/version-control/what-is-code-review/">GitLab blog: What is a code review?</a></p></li>
+<li><p><a href="https://stackoverflow.blog/2019/09/30/how-to-make-good-code-reviews-better/">Stack Overflow blog: How to Make Good Code Review Better</a></p></li>
+<li><p><a href="https://code-review.tidyverse.org/">Tidyteam code review principles</a></p></li>
+</ul>
+
+
+</section>
+</section>
+</main> 
+    <div class="about-footer"><div class="about-links">
+  <a href="https://twitter.com/_jcken" class="about-link" rel="" target="">
+    <i class="bi bi-twitter"></i>
+     <span class="about-link-text"></span>
+  </a>
+  <a href="https://qoto.org/@_jcken" class="about-link" rel="" target="">
+    <i class="bi bi-mastodon"></i>
+     <span class="about-link-text"></span>
+  </a>
+  <a href="https://github.com/jcken95" class="about-link" rel="" target="">
+    <i class="bi bi-github"></i>
+     <span class="about-link-text"></span>
+  </a>
+  <a href="https://www.strava.com/athletes/34753518" class="about-link" rel="" target="">
+    <i class="bi bi-strava"></i>
+     <span class="about-link-text"></span>
+  </a>
+  <a href="https://www.linkedin.com/in/jack-kennedy-733a09161/" class="about-link" rel="" target="">
+    <i class="bi bi-linkedin"></i>
+     <span class="about-link-text"></span>
+  </a>
+</div>
+</div>
+  </div>
+</div>
+ <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jcken95\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
