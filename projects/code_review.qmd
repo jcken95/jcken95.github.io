@@ -1,7 +1,7 @@
 ---
   title: "Code review for statisticians, data scientists & modellers"
   subtitle: ""
-  description: "Software developers have some really good approaches to code review. Here's a data scientists plea to listen to the software developers!"
+  description: "Software developers have some really good approaches to code review. Here's a data scientist's plea to listen to the software developers!"
   format: html
   date: 2024-09-12
   about:
@@ -18,7 +18,7 @@ The honest answer to _Who is this for?_ is that this is for me. It's for a previ
 
 That being said, I think anyone working in some kind of modelling or analytical role, whose main output is some sort of mathematical or statistical analysis, but writes code to implement their models could find this useful.
 
-It doesn't really matter what programming language you use, or whether you're storing your code on GitHub, GitLab, Bitbucket or whatever else. However this will be biased towards R and GitHub because that's what I use. The concepts are important here, not the precise toolkit.
+It doesn't really matter what programming language you use, or whether you're storing your code on GitHub, GitLab, BitBucket or whatever else. However this will be biased towards R and GitHub because that's what I use. The concepts are important here, not the precise toolkit.
 
 If you're here, I'm going to assume you know roughly what a code review is, but it doesn't hurt to have a quick refresher.
 
@@ -91,7 +91,7 @@ We don't want bugs in production code. Checking over the code before it's put in
 
 #### Quality and compliance
 
-Here you'll be checking that code is maintainable and well formatted. You'll also want to check that the outputs meet a minimum standard, for example, does your model give vaguely sensible predictions? Does the graph going to the really important stakeholder look good? Have you rounded value in the table to a reasonable number of significant figures or are we really going to tell the CEO that we're forecasting a profit of £103,255.5599885255 next week?
+Here you'll be checking that code is maintainable and well formatted. You'll also want to check that the outputs meet a minimum standard, for example, does your model give vaguely sensible predictions? Does the graph going to the really important stakeholder look good? Have you rounded the values in that table to a reasonable number of significant figures or are we really going to tell the CEO that we're forecasting a profit of £103,255.5599885255 next week?
 
 There's also a security aspect here: by reviewing code, we provide a guard against malice.  This should _never_ be a problem, but nasty people do have jobs, a little code review protects against this.
 
@@ -143,12 +143,12 @@ You should not just be looking for things that are wrong with the code, but also
  
 #### Provides nit picks
 
-Nit picks, or just nits, are annoying (and something I do too much, sorry colleagues), but they are an inevitable apart of code review
+Nit picks, or just nits, are annoying (and something I do too much, sorry colleagues), but they are an inevitable apart of code review.
 
 Nits are usually small stylistic points. Examples include:
 
  * White space.
- * Variable/function names (this is arguably more than a nit!)
+ * Variable/function names (this is arguably more than a nit!).
  * Positioning of brackets, choice of assignment operator, and other fairly inconsequential suggestions.
 
 Pretty much all of this is avoided when a team adopts and enforces a style guide.
@@ -181,7 +181,7 @@ If a violation of the style guide is a big fix, because, for example, you need t
 
 #### Be kind when reviewing code
 
-Sometimes code review can come across as blunt – we’re all really busy, it’s easier to write short, direct comments. Do try to avoid this, but it can be tricky. Reviewers should try their hardest not to be blunt, but authors should bear this in mind.
+Sometimes code review can come across as blunt -- we’re all really busy, it’s easier to write short, direct comments. Do try to avoid this, but it can be tricky. Reviewers should try their hardest not to be blunt, but authors should bear this in mind.
 
 You can avoid being blunt by breaking up review sessions. Take your own patience into account, but if you're reviewing for an hour or more, you're probably going to start cutting corners and getting grumpy.
 
