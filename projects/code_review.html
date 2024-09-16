@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2024-09-12">
-<meta name="description" content="Software developers have some really good approaches to code review. Here’s a data scientists plea to listen to the software developers!">
+<meta name="description" content="Software developers have some really good approaches to code review. Here’s a data scientist’s plea to listen to the software developers!">
 
 <title>Code review for statisticians, data scientists &amp; modellers – Jack Kennedy</title>
 <style>
@@ -104,7 +104,7 @@ cookieconsent.run({
 
 
 <meta name="twitter:title" content="Code review for statisticians, data scientists &amp; modellers – Jack Kennedy">
-<meta name="twitter:description" content="Software developers have some really good approaches to code review. Here’s a data scientists plea to listen to the software developers!">
+<meta name="twitter:description" content="Software developers have some really good approaches to code review. Here’s a data scientist’s plea to listen to the software developers!">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -182,7 +182,7 @@ cookieconsent.run({
 </div>
 <div>
   <div class="description">
-    Software developers have some really good approaches to code review. Here’s a data scientists plea to listen to the software developers!
+    Software developers have some really good approaches to code review. Here’s a data scientist’s plea to listen to the software developers!
   </div>
 </div>
 <div class="quarto-title-meta">
@@ -201,7 +201,7 @@ cookieconsent.run({
 <p>However, we’re writing software all day. We’re writing mathematical/statistical models, creating data-driven products and doing data engineering. We quality assure all of this work via code review.</p>
 <p>The honest answer to <em>Who is this for?</em> is that this is for me. It’s for a previous version of myself who knew the mechanics of reviewing code, but could have exercised <s>a bit more</s> <em>much more</em> nuance.</p>
 <p>That being said, I think anyone working in some kind of modelling or analytical role, whose main output is some sort of mathematical or statistical analysis, but writes code to implement their models could find this useful.</p>
-<p>It doesn’t really matter what programming language you use, or whether you’re storing your code on GitHub, GitLab, Bitbucket or whatever else. However this will be biased towards R and GitHub because that’s what I use. The concepts are important here, not the precise toolkit.</p>
+<p>It doesn’t really matter what programming language you use, or whether you’re storing your code on GitHub, GitLab, BitBucket or whatever else. However this will be biased towards R and GitHub because that’s what I use. The concepts are important here, not the precise toolkit.</p>
 <p>If you’re here, I’m going to assume you know roughly what a code review is, but it doesn’t hurt to have a quick refresher.</p>
 <p>Code review is a form of peer review. Let’s suppose you’ve written some code, <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">made a pull request</a> (PR) and then assigned a reviewer. The reviewer goes through your code and looks for potential issues with the code, suggests improvements, and maybe says one or two nice things about the thing you’ve been grinding away at.</p>
 <p>I’d also like to be upfront here and say there is very little original thought going into this. Software developers have written a lot of good content on what makes good code review. I’ll link to some further reading and inspiration and the end.</p>
@@ -275,7 +275,7 @@ cookieconsent.run({
 </section>
 <section id="quality-and-compliance" class="level4">
 <h4 data-anchor-id="quality-and-compliance">Quality and compliance</h4>
-<p>Here you’ll be checking that code is maintainable and well formatted. You’ll also want to check that the outputs meet a minimum standard, for example, does your model give vaguely sensible predictions? Does the graph going to the really important stakeholder look good? Have you rounded value in the table to a reasonable number of significant figures or are we really going to tell the CEO that we’re forecasting a profit of £103,255.5599885255 next week?</p>
+<p>Here you’ll be checking that code is maintainable and well formatted. You’ll also want to check that the outputs meet a minimum standard, for example, does your model give vaguely sensible predictions? Does the graph going to the really important stakeholder look good? Have you rounded the values in that table to a reasonable number of significant figures or are we really going to tell the CEO that we’re forecasting a profit of £103,255.5599885255 next week?</p>
 <p>There’s also a security aspect here: by reviewing code, we provide a guard against malice. This should <em>never</em> be a problem, but nasty people do have jobs, a little code review protects against this.</p>
 </section>
 </section>
@@ -329,11 +329,11 @@ cookieconsent.run({
 </section>
 <section id="provides-nit-picks" class="level4">
 <h4 data-anchor-id="provides-nit-picks">Provides nit picks</h4>
-<p>Nit picks, or just nits, are annoying (and something I do too much, sorry colleagues), but they are an inevitable apart of code review</p>
+<p>Nit picks, or just nits, are annoying (and something I do too much, sorry colleagues), but they are an inevitable apart of code review.</p>
 <p>Nits are usually small stylistic points. Examples include:</p>
 <ul>
 <li>White space.</li>
-<li>Variable/function names (this is arguably more than a nit!)</li>
+<li>Variable/function names (this is arguably more than a nit!).</li>
 <li>Positioning of brackets, choice of assignment operator, and other fairly inconsequential suggestions.</li>
 </ul>
 <p>Pretty much all of this is avoided when a team adopts and enforces a style guide.</p>
