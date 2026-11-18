@@ -2,7 +2,10 @@
   title: "Unidentified forecasting object"
   subtitle: "Using epidemiological forecasting methods to predict the number of reported UFO sightings"
   description: ""
-  format: html
+  format: 
+    html:
+      code-fold: false
+      code-summary: "Show code"
   date: 2026-11-16
   about:
     template: marquee
@@ -11,5 +14,189 @@
 
 # This can't be serious???
 
+Okay so this isn't mega serious but this data is real. A few years ago a wrote a [Jumping Rivers blog post](https://www.jumpingrivers.com/blog/ufo-counts-in-stan-bayesian-r/) about using Stan to model global UFO sightings reports. The [#TidyTuesday](link-t0) project has used this data set before to prompt some fun visualisations. I used splines in time and a negative binomial distribution to model a reporting pattern.
 
+A few years have passed since then and I've been working in epidemiology for a while. A common statistical approach to short term forecasting (forecasts of up to about 4 weeks ahead) for epidemics is to use splines in time and a negative binomial distribution to describe key quantities of interest. For example, the number of cases of a novel pathogen reported daily by some geographical region (e.g. different countries, or in the US we might model disease dynamics at state level). 
+
+I've gotten used to working with that kind of data and I've been itching to revisit that blog post with 3ish years worth of epidemic modelling under my belt. The analysis I'll be doing here will be based upon [open source code](https://github.com/jcken95/sub-ensemble-evaluation) from the modelling I do in my day job.
+
+The plan here is to build a mini epidemiological-style modelling pipeline to predict the number of UFO sighting reports at various locations. We will need need a little primer on ensemble modelling and GAMs, but before we do that, let's have a look at the data.
+
+# Some data exploration and wrangling
+
+A really important thing to stress here is these are _reports_ of UFO sightings. It doesn't mean someone _actually saw_ a UFO. But it doesn't mean that they didn't see one either ...
+
+The data is available on the TidyTuesday [github repo](https://github.com/rfordatascience/tidytuesday/blob/main/data/2023/2023-06-20/readme.md).
+
+```{r}
+#| message: false
+set.seed(2122)
+ufo_sightings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2023/2023-06-20/ufo_sightings.csv')
+ufo_sightings |>
+  dplyr::select(reported_date_time, country_code, summary) |> 
+  utils::head() |>
+  gt::gt()
+```
+
+I've not displayed all the data here, just a few to get a feel for things. We know when and were the report was made, and we have a bit of an eye witness report. Apparently one UFO looked like a black tic-tac moving at insane speed, and apparently someone was even scanned by two aliens! 
+
+I need to reshape this data to make modelling possible. In epidemiology, we often have a "line-list" which is a bit like our set of reports. Each row will be the result of a test for a particular disease, as well as information about when the test was taken and information about who took the text (for example, their age and biological sex). Here we have a time of a report and a location -- not the same but a similar structure!
+
+I'm going to count up the number of reports made each month in each region, but I am going to restrict this analysis to countries who have reported at least 200 sightings. This is going to simplify the analysis later on as we will be working with fewer regions, but the overall principles, code, and mathematical ideas generalise. In general, it's a bad idea to omit a region solely due to infrequent or low reporting.
+
+After a bit of wrangling we can get our data into a format which is the total number of reports per month, per region
+
+```{r}
+#| label: wrangling
+#| code-fold: true
+
+total_sights_per_country <- ufo_sightings |>
+  dplyr::summarise(
+    n = dplyr::n(),
+    .by = country_code
+  )
+
+low_sight_countries <- total_sights_per_country |>
+  dplyr::filter(n < 200) |>
+  dplyr::pull(country_code)
+
+ufo_monthly <- ufo_sightings |>
+  dplyr::filter(!(country_code %in% low_sight_countries)) |> 
+  dplyr::mutate(date = reported_date_time) |> 
+  tidyr::drop_na(date, country_code) |>
+  dplyr::mutate(
+    month_year = lubridate::round_date(date, unit = "month")
+  ) |>
+  dplyr::summarise(
+    sightings_month = dplyr::n(),
+    .by = c(month_year, country_code)
+  ) 
+
+date_country <- tibble::tibble(
+  month_year = seq(
+    from = min(ufo_monthly$month_year),
+    to = max(ufo_monthly$month_year),
+    by = "month"
+  )
+) |>
+  tidyr::expand_grid(
+    country_code = unique(ufo_monthly$country_code)
+  )
+
+ufo_complete <- ufo_monthly |>
+  dplyr::right_join(date_country, by = dplyr::join_by(month_year, country_code)) |>
+  dplyr::mutate(sightings_month = dplyr::coalesce(sightings_month, 0)) |>
+  dplyr::arrange(dplyr::desc(month_year), country_code)
+
+
+ufo_complete |>
+  utils::head(10) |>
+  gt::gt()
+```
+
+
+```{r}
+#| label: plot-sighting
+
+ufo_complete |> 
+  dplyr::bind_rows(
+    ufo_complete |>
+      dplyr::summarise(
+        sightings_month = sum(sightings_month), .by = month_year
+      ) |>
+      dplyr::mutate(country_code = "Total")
+  ) |> 
+  dplyr::mutate(
+    country_code = ordered(country_code, levels = c(unique(ufo_complete$country_code), "Total"))
+  ) |> 
+  ggplot2::ggplot(
+    ggplot2::aes(x = month_year, y = sightings_month)
+  ) +
+  ggplot2::geom_point() +
+  ggplot2::facet_wrap(ggplot2::vars(country_code), scales = "free_y")+
+  ggplot2::labs(
+    x = "Sighting date",
+    y = "Number monthly sightings"
+  ) +
+  ggplot2::theme_minimal()
+```
+
+The scale of the reporting patterns is very different by region. In the US we see up to hundreds of monthly reporting sightings during the 2000s and 2010, but moths other countries are reporting single or double-digit counts. However, there's a simliar shape in each region - very low counts up until about 1990, a peak somewhere in the 2000-2010s and a decline into the 2020s.
+
+# The modelling basics
+
+There's two main statistical concepts we will go over here. The first is ensembles, the seconds will be generalised additive models (GAMs). Fusing these two approaches has been a successful approach used by various epidemic modelling teams in public health organisations. These methods (as do many other!) allow us to make interval forecasts about the future: for example, "_We forecast that on 18th December 2026, the median number of new cases of Michael Buble fever will be 50, with a 90% prediction interval of (32, 93) cases._"
+
+## Ensembles
+
+Ensemble methods essentially take the predictions from multiple statistical models and combine them in the hope you achieve an overall more accurate forecast. Ensembles tend to be more robust than single-model predictions in two senses:
+
+* Statistically robust: different models encode different assumptions. By ensembling, we are not relying on a single set of assumptions for our analysis.
+* Operationally robust: code breaks, models sometimes behave weird. If we can't get a model to run, or the output is not an epidemioligically plausible prediction, we can drop a models contribution to an ensemble and still output a forecast.
+
+So when you're fitting models every week to deliver to important people (politicians, scientists with wikipedia pages, people who work to save lives), you really can't afford to put all your eggs in one basket.
+
+It is well known in the epidemiological forecasting literature that a diverse set of models tends to lead to a better ensembe. That means ensembling different assumptions as well as methods. Ensembles can include statitsical models (e.g. GAMs - more on those later), mechanistic models like the SIR model, and classic time series model (e.g. ARMA). There's plenty of other things you can throw in too!
+
+### Quantile averaging 
+
+There are two ways that are commonly used in my field to construct ensembles. In _quantile averaging_ we take a set of quantiles from a set of models, then the quantiles of the ensemble are the average values of the quantiles from each contributing model. If $q^m(p)$ is the $p\%$ quantile of model $m$ then we can map the following component model quantiles to ensemble quantiles:
+
+$$
+\begin{pmatrix} q^1(0.05) \\ q^1(0.10) \\ \vdots  \\ q^1(0.50) \\\vdots \\ q^1(0.90) \\ q^1(0.95) \end{pmatrix},
+\begin{pmatrix} q^2(0.05) \\ q^2(0.10) \\ \vdots  \\ q^2(0.50) \\ \vdots \\q^2(0.90) \\ q^2(0.95) \end{pmatrix},
+\ldots,
+\begin{pmatrix} q^M(0.05) \\ q^M(0.10) \\ \vdots  \\ q^M(0.50) \\ \vdots \\ q^M(0.90) \\ q^M(0.95) \end{pmatrix}
+\overset{\text{ensemble}}{\rightarrow}
+\begin{pmatrix} \bar{q}(0.05) \\ \bar{q}(0.10) \\ \vdots  \\ \bar{q}(0.50) \\ \vdots \\\bar{q}(0.90) \\ \bar{q}(0.95) \end{pmatrix}
+$$
+Here we've used the mean to average the quantiles. The median might also be used.
+
+The method is great for "forecasting hubs". Lots of public health agencies allow modelling teams to submit there own forecasts of a epidemic (cite something) as a collection of quantiles, then the hub aggregates the submitted predictions and outputs ensemble. It's an efficient way to construct ensembles, however, the mean of a collection of quantiles is not the same as the "true" quantile of the ensemble.
+
+### Posterior stacking
+
+Suppose I can generate predictive samples from my model. For most statistical models, this is quite simple as we've assumed some statistical form and then fit a model to the data. If we then generate $N$ samples from each the $M$ ensemble models, we then have $N \times M$ samples, from which we can compute quantiles. 
+
+The nice thing about posterior stacking is it gives us a _coherent_ forecast when we have breakdowns in our predictions. It's not uncommon for the spread of a disease through a population to somehow depends on the characteristics of sub-populations. For example, very young or very old people tend to have weaker immune systems so are more likely to have severe symptoms of a disease. Some countries or regions within a country take different approaches to public heath (for reasons which might be political choices or driven by the availability of resources) and therefore we expect an epidemic to be worse in some locations compared to others. 
+
+We might want forecasts of individual regions within a country, but then also want a national forecast. To obtain a national forecast we just sum the regional forecasts. If we used a quantile-averaging approach the quantiles of the sums might not equal the sums of the quantiles, but if we sum samples and then compute quantiles, we obtain a coherent forecast. The downside of this approach is submitting lots of samples to a hub can get a bit messy, so the stacking method is often preferred by those producing ensembles "in house".
+
+# Generalised additive models
+
+At work, my bread and butter modelling approach to modelling an epidemic is to use a GAM. GAMs are handy because they can fit flexible curves to complex data, but with modelling software like {mgcv}, the fitting of these models is pretty fast! "Fast" is subjective, but with the computing facilities I have access to, I can fit a GAM to the data I am working with in anywhere from a the blink of an eye to a couple of minutes.
+
+Anyway, in the type of work I do, I might model the number of hospital admissions, $y(t, r)$ at time $t$ in region $r$ as:
+
+$$
+y(t, r) \sim \text{NegBin}(\mu(t, r), \varphi)
+$$
+$$
+\log( \mu(t, r)) = s(t) + s_r(t) + \text{wday}_t + \text{other effects}
+$$
+where $s(t)$ is a "global" smoother, $s_r(t)$ is a regional smoother, $\text{wday}_t$ is a day of week effect and we might have some other effects in the model too, e.g. information about correlated variables such as internet searches for symptoms or weather variables.
+
+I think this structure would be a great fit for the UFO sighting data, so lets get onto building some models ...
+
+
+# A first model
+
+Having taken a look at the data, it's likely we have an effect for each month, and some smooth temporal variation by region.
+
+My first GAM is going to be a Gaussian Process (GP) based model, with a fixed effect for country and random effect for month. In R, that might look like this
+
+```{r}
+#| label: gaussian-process-model
+#| eval: false
+fitted_model <- mgcv::gam(
+  sightings_month ~ s(t_numeric, by = country_code, bs = "gp", m = c(-2, transformed_lengthscale, 2)) + 
+    country_code +
+    s(month, bs = "re"),
+  data = input_data,
+  family = "nb"
+)
+```
+where `t_numeric` is our time variable, `country_code` is a factor representing the country, `transformed_lengthscale` is a hyperparameter of our GP and `input_data` is our data used to fit the model. This correpsonds to a model with only regional smooths (so no $s(t)$) term.
+
+I'm not going to walk through all the other models I build for this analysis, but they're GAMs with different approaches to smoothing. You can investigate the model details [here](https://github.com/jcken95/unidentified-forecasting-object/tree/main/models).
 
