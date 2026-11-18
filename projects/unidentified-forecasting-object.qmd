@@ -1,0 +1,15 @@
+---
+  title: "Unidentified forecasting object"
+  subtitle: "Using epidemiological forecasting methods to predict the number of reported UFO sightings"
+  description: ""
+  format: html
+  date: 2026-11-16
+  about:
+    template: marquee
+---
+
+
+# This can't be serious???
+
+
+
