@@ -176,7 +176,7 @@ window.Quarto = {
 
 <meta name="twitter:title" content="Unidentified forecasting object – Jack Kennedy">
 <meta name="twitter:description" content="Using epidemiological forecasting methods to predict the number of reported UFO sightings">
-<meta name="twitter:image" content="unidentified-forecasting-object_files/figure-html/plot-sighting-1.png">
+<meta name="twitter:image" content="https://jcken95.github.io/projects/unidentified-forecasting-object_files/figure-html/plot-sighting-1.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -726,7 +726,7 @@ window.Quarto = {
 </div>
 <p>I’ve not displayed all the data here, just a few rows to get a feel for things. We know when and where the report was made, and we have a bit of an eye witness report. Apparently one UFO looked like a black tic-tac moving at insane speed, and apparently someone was even scanned by two aliens!</p>
 <p>I need to reshape this data to make modelling possible. In epidemiology, we often have a “line list” which is a bit like our set of reports. Each row will be the result of a test for a particular disease, as well as information about when the test was taken and information about who took the test (for example, their age and biological sex). Here we have a time of a report and a location – this is our line list!</p>
-<p>For modelling and patient-privacy reasons, we almost always work with a set of daily case totals rather than line lists. I’m therefore going to count up the number of reports made each month in each region, but I am going to restrict this analysis to countries who have reported at least 200 sightings. This is going to simplify the analysis later on as we will be working with fewer regions, but the overall principles, code, and mathematical ideas generalise, it’s basically just a case of scaling compute. In general, it’s a bad idea to omit a region solely due to infrequent or low reporting.</p>
+<p>For modelling and patient-privacy reasons, we almost always work with a set of daily case totals rather than line lists. I’m therefore going to count up the number of reports made each month in each country, but I am going to restrict this analysis to countries who have reported at least 200 sightings. This is going to simplify the analysis later on as we will be working with fewer regions, but the overall principles, code, and mathematical ideas generalise, it’s basically just a case of scaling compute. In general, it’s a bad idea to omit a region solely due to infrequent or low reporting.</p>
 <p>After a bit of wrangling we can get our data into a format which is the total number of reports per month, per region</p>
 <div class="cell">
 <details class="code-fold">
@@ -1250,7 +1250,7 @@ window.Quarto = {
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> month_year, <span class="at">y =</span> sightings_month)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(ggplot2<span class="sc">::</span><span class="fu">vars</span>(country_code), <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Sighting date"</span>,</span>
@@ -1265,7 +1265,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>The scale of the reporting patterns is very different by region. In the US we see up to hundreds of monthly reporting sightings during the 2000s and 2010, but moths other countries are reporting single or double-digit counts. However, there’s a simliar shape in each region - very low counts up until about 1990, a peak somewhere in the 2000-2010s and a decline into the 2020s.</p>
+<p>The scale of the reporting patterns is very different by region. In the US we see up to hundreds of monthly reporting sightings during the 2000s and 2010, but months other countries are reporting single or double-digit counts. However, there’s a similar shape in each country - very low counts up until about 1990, a peak somewhere in the 2000-2010s and a decline into the 2020s.</p>
 </section>
 <section id="the-modelling-basics" class="level1">
 <h1>The modelling basics</h1>
@@ -1275,10 +1275,10 @@ window.Quarto = {
 <p>Ensemble methods essentially take the predictions from multiple statistical models and combine them in the hope you achieve an overall more accurate forecast. Ensembles tend to be more robust than single-model predictions in two senses:</p>
 <ul>
 <li>Statistically robust: different models encode different assumptions. By ensembling, we are not relying on a single set of assumptions for our analysis.</li>
-<li>Operationally robust: code breaks, models sometimes behave weird, data feeds vanish with no prior warning. If we can’t get a model to run, or the output is not an epidemioligically plausible prediction, we can drop a models contribution to an ensemble and still output a forecast.</li>
+<li>Operationally robust: code breaks, models sometimes behave weird, data feeds vanish with no prior warning. If we can’t get a model to run, or the output is not an epidemiologically plausible prediction, we can drop a models contribution to an ensemble and still output a forecast.</li>
 </ul>
-<p>So when you’re fitting models every week to deliver to important people (politicians, scientists with wikipedia pages, people who work to save lives), you really can’t afford to put all your eggs in one basket.</p>
-<p>It is well known in the epidemiological forecasting literature that a diverse set of models tends to lead to a better ensemble. That means ensembling different assumptions as well as methods. Ensembles can include statitsical models (e.g.&nbsp;GAMs - more on those later), mechanistic models like the SIR model, and classic time series model (e.g.&nbsp;ARMA). There’s plenty of other things you can throw in too!</p>
+<p>So when you’re fitting models every week to deliver to important people (politicians, scientists with Wikipedia pages, people who work to save lives), you really can’t afford to put all your eggs in one basket.</p>
+<p>It is well known in the epidemiological forecasting literature that a diverse set of models tends to lead to a better ensemble. That means ensembling different assumptions as well as methods. Ensembles can include statistical models (e.g.&nbsp;GAMs - more on those later), mechanistic models like the SIR model, and classic time series model (e.g.&nbsp;ARMA). There’s plenty of other things you can throw in too!</p>
 <section id="quantile-averaging" class="level3">
 <h3 data-anchor-id="quantile-averaging">Quantile averaging</h3>
 <p>There are two ways that are commonly used in my field to construct ensembles. In <em>quantile averaging</em> we take a set of quantiles from a set of models, then the quantiles of the ensemble are the average values of the quantiles from each contributing model. If <span class="math inline">\(q^m(p)\)</span> is the <span class="math inline">\(p\%\)</span> quantile of the prediction from model <span class="math inline">\(m\)</span>, then we can map the following component model quantiles to ensemble quantiles:</p>
@@ -1289,7 +1289,7 @@ window.Quarto = {
 \begin{pmatrix} q^M(0.05) \\ q^M(0.10) \\ \vdots  \\ q^M(0.50) \\ \vdots \\ q^M(0.90) \\ q^M(0.95) \end{pmatrix}
 \overset{\text{ensemble}}{\rightarrow}
 \begin{pmatrix} \bar{q}(0.05) \\ \bar{q}(0.10) \\ \vdots  \\ \bar{q}(0.50) \\ \vdots \\\bar{q}(0.90) \\ \bar{q}(0.95) \end{pmatrix}
-\]</span> Here we’ve used the mean to average the quantiles. The median might also be used.</p>
+\]</span> Here we’ve used the mean to average the quantiles. The median of the quantiles might also be used.</p>
 <p>The method is great for “forecasting hubs”. Lots of public health agencies allow modelling teams to submit there own forecasts of a epidemic as a collection of quantiles, then the hub aggregates the submitted predictions and outputs ensemble. For example, the US’s CDC had a <a href="https://covid19forecasthub.org/">COVID-19 forecasting hub</a>. It’s an efficient way to construct ensembles, however, the mean of a collection of quantiles is not the same as the “true” quantile of the ensemble.</p>
 </section>
 <section id="posterior-stacking" class="level3">
@@ -1324,7 +1324,7 @@ y(t, r) \sim \text{NegBin}(\mu(t, r), \varphi)
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">"nb"</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>where <code>t_numeric</code> is our time variable, <code>country_code</code> is a factor representing the country, <code>transformed_lengthscale</code> is a hyperparameter of our GP and <code>input_data</code> is our data used to fit the model. This correpsonds to a model with only regional smooths (so no <span class="math inline">\(s(t)\)</span>) term.</p>
+<p>where <code>t_numeric</code> is our time variable, <code>country_code</code> is a factor representing the country, <code>transformed_lengthscale</code> is a hyperparameter of our GP and <code>input_data</code> is our data used to fit the model. This corresponds to a model with only regional smooths (so no <span class="math inline">\(s(t)\)</span>) term.</p>
 <p>I’m not going to walk through all the other models I build for this analysis, but they’re GAMs with different approaches to smoothing. You can investigate the model details <a href="https://github.com/jcken95/unidentified-forecasting-object/tree/main/models">here</a>.</p>
 <p>What is really important across our suite of ensemble models is a consistent set of inputs and output from the model: we can then apply the same pre and post processing model inputs and outputs.</p>
 <p>For this very simple sample we will have models that look a bit like this</p>
@@ -1342,7 +1342,7 @@ y(t, r) \sim \text{NegBin}(\mu(t, r), \varphi)
 </div>
 <p>In my models, the columns are</p>
 <ul>
-<li><code>.row</code> a “spine” for interal modelling</li>
+<li><code>.row</code> a “spine” for internal modelling</li>
 <li><code>.draw</code> an ID for the posterior sample draw</li>
 <li><code>.reponse</code> the predicted value (for that sample-location-time combination)</li>
 <li><code>month_year</code> the date</li>
@@ -1356,7 +1356,8 @@ y(t, r) \sim \text{NegBin}(\mu(t, r), \varphi)
 <p>This consistency means my model post-processing and ensembling is fairly straight forward.</p>
 <section id="fitting-the-ensemble" class="level3">
 <h3 data-anchor-id="fitting-the-ensemble">Fitting the ensemble</h3>
-<p>The following collapsed snippet reads all the models in straight from my github repo - ideally I’d wrap this all up in a paclage or something but this is quick and easy. I wouldn’t advise running <code>source()</code> on any old files off the internet normally. I’m also going to store all my model functions in a list for a neat functional-programming approach to model fitting later.</p>
+<p>The following collapsed snippet reads all the models in straight from my github repo - ideally I’d wrap this all up in a package or something but this is quick and easy. I wouldn’t advise running <code>source()</code> on any old files off the internet normally. I’m also going to store all my model functions in a list for a neat functional-programming approach to model fitting later.</p>
+<p>I will have an ensemble based on four models. GAMs with the following smoothers: Gaussian process, thin plate splines, cubic regression splines and p splines.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
@@ -1400,7 +1401,7 @@ y(t, r) \sim \text{NegBin}(\mu(t, r), \varphi)
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>gp_fit <span class="ot">&lt;-</span> <span class="fu">gaussian_process</span>(fit_data, forecast_horizon)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>And then let’s make a quick plot to check the forecasts. We will plot the median, 50% and 90% predictive quangtiles against “future” values</p>
+<p>And then let’s make a quick plot to check the forecasts. We will plot the median, 50% and 90% predictive quantiles against “future” values</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plot_colours <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"fit"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>, <span class="at">forecast =</span> <span class="st">"darkblue"</span></span>
@@ -1460,7 +1461,7 @@ y(t, r) \sim \text{NegBin}(\mu(t, r), \varphi)
 <section id="building-up-an-ensemble" class="level2">
 <h2 data-anchor-id="building-up-an-ensemble">Building up an ensemble</h2>
 <p>Now we’ve built a single-model forecast, we want to scale up to an ensemble-based workflow. I’m going to use the {purrr} package and a neat little trick to generate our ensemble with (excluding the model functions themselves), just two function calls!</p>
-<p>If you’re not familiar with {purrr}, <code>purrr:map()</code> lets us iterate over elements of a list, it’s basically an implementation of a <code>for</code> loop or reframing of <code>apply()</code> type functions. Remember earlier I stored all my model functions in a named list called <code>models</code>? Well I can <code>purrr::map()</code> over these models and stack all the results in a data frame to create our ensemble. I’d used <code>map()</code> a lot in the past to iterate over data (e.g.&nbsp;apply the same functions to different data sets), but the first time I saw the inverse: apply different functions to the same data I thought that was actually pretty cool.</p>
+<p>If you’re not familiar with {purrr}, <code>purrr:map()</code> lets us iterate over elements of a list, it’s basically an implementation of a <code>for</code> loop or reframing of <code>apply()</code> type functions. Remember earlier I stored all my model functions in a named list called <code>models</code>? Well I can <code>purrr::map()</code> over these models and stack all the results in a data frame to create our ensemble. I’d used <code>purrr::map()</code> a lot in the past to iterate over data (e.g.&nbsp;apply the same functions to different data sets), but the first time I saw the inverse: apply different functions to the same data I thought that was actually pretty cool.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_fits <span class="ot">&lt;-</span> models <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fit each element of models to the data (and generate a forecast)</span></span>
@@ -1503,7 +1504,7 @@ y(t, r) \sim \text{NegBin}(\mu(t, r), \varphi)
 <span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>(</span>
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fit_data,</span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> month_year, <span class="at">y =</span> sightings_month), <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(<span class="sc">~</span>country_code, <span class="at">scale =</span> <span class="st">"free_y"</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">facet_grid</span>(ggplot2<span class="sc">::</span><span class="fu">vars</span>(country_code), <span class="at">scale =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
 <span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_fill_manual</span>(<span class="at">values =</span> plot_colours) <span class="sc">+</span></span>
 <span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_colour_manual</span>(<span class="at">values =</span> plot_colours) <span class="sc">+</span></span>
 <span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
@@ -1759,7 +1760,7 @@ y(t, r) \sim \text{NegBin}(\mu(t, r), \varphi)
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/jcken95\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -42,7 +42,7 @@ I've not displayed all the data here, just a few rows to get a feel for things. 
 
 I need to reshape this data to make modelling possible. In epidemiology, we often have a "line list" which is a bit like our set of reports. Each row will be the result of a test for a particular disease, as well as information about when the test was taken and information about who took the test (for example, their age and biological sex). Here we have a time of a report and a location -- this is our line list!
 
-For modelling and patient-privacy reasons, we almost always work with a set of daily case totals rather than line lists. I'm therefore going to count up the number of reports made each month in each region, but I am going to restrict this analysis to countries who have reported at least 200 sightings. This is going to simplify the analysis later on as we will be working with fewer regions, but the overall principles, code, and mathematical ideas generalise, it's basically just a case of scaling compute. In general, it's a bad idea to omit a region solely due to infrequent or low reporting.
+For modelling and patient-privacy reasons, we almost always work with a set of daily case totals rather than line lists. I'm therefore going to count up the number of reports made each month in each country, but I am going to restrict this analysis to countries who have reported at least 200 sightings. This is going to simplify the analysis later on as we will be working with fewer regions, but the overall principles, code, and mathematical ideas generalise, it's basically just a case of scaling compute. In general, it's a bad idea to omit a region solely due to infrequent or low reporting.
 
 After a bit of wrangling we can get our data into a format which is the total number of reports per month, per region
 
@@ -112,7 +112,7 @@ ufo_complete |>
   ggplot2::ggplot(
     ggplot2::aes(x = month_year, y = sightings_month)
   ) +
-  ggplot2::geom_point() +
+  ggplot2::geom_point(size = 0.3) +
   ggplot2::facet_wrap(ggplot2::vars(country_code), scales = "free_y")+
   ggplot2::labs(
     x = "Sighting date",
@@ -121,7 +121,7 @@ ufo_complete |>
   ggplot2::theme_minimal()
 ```
 
-The scale of the reporting patterns is very different by region. In the US we see up to hundreds of monthly reporting sightings during the 2000s and 2010, but moths other countries are reporting single or double-digit counts. However, there's a simliar shape in each region - very low counts up until about 1990, a peak somewhere in the 2000-2010s and a decline into the 2020s.
+The scale of the reporting patterns is very different by region. In the US we see up to hundreds of monthly reporting sightings during the 2000s and 2010, but months other countries are reporting single or double-digit counts. However, there's a similar shape in each country - very low counts up until about 1990, a peak somewhere in the 2000-2010s and a decline into the 2020s.
 
 # The modelling basics
 
@@ -132,11 +132,11 @@ There's two main statistical concepts we will go over here. The first is ensembl
 Ensemble methods essentially take the predictions from multiple statistical models and combine them in the hope you achieve an overall more accurate forecast. Ensembles tend to be more robust than single-model predictions in two senses:
 
 * Statistically robust: different models encode different assumptions. By ensembling, we are not relying on a single set of assumptions for our analysis.
-* Operationally robust: code breaks, models sometimes behave weird, data feeds vanish with no prior warning. If we can't get a model to run, or the output is not an epidemioligically plausible prediction, we can drop a models contribution to an ensemble and still output a forecast.
+* Operationally robust: code breaks, models sometimes behave weird, data feeds vanish with no prior warning. If we can't get a model to run, or the output is not an epidemiologically plausible prediction, we can drop a models contribution to an ensemble and still output a forecast.
 
-So when you're fitting models every week to deliver to important people (politicians, scientists with wikipedia pages, people who work to save lives), you really can't afford to put all your eggs in one basket.
+So when you're fitting models every week to deliver to important people (politicians, scientists with Wikipedia pages, people who work to save lives), you really can't afford to put all your eggs in one basket.
 
-It is well known in the epidemiological forecasting literature that a diverse set of models tends to lead to a better ensemble. That means ensembling different assumptions as well as methods. Ensembles can include statitsical models (e.g. GAMs - more on those later), mechanistic models like the SIR model, and classic time series model (e.g. ARMA). There's plenty of other things you can throw in too!
+It is well known in the epidemiological forecasting literature that a diverse set of models tends to lead to a better ensemble. That means ensembling different assumptions as well as methods. Ensembles can include statistical models (e.g. GAMs - more on those later), mechanistic models like the SIR model, and classic time series model (e.g. ARMA). There's plenty of other things you can throw in too!
 
 ### Quantile averaging 
 
@@ -150,7 +150,7 @@ $$
 \overset{\text{ensemble}}{\rightarrow}
 \begin{pmatrix} \bar{q}(0.05) \\ \bar{q}(0.10) \\ \vdots  \\ \bar{q}(0.50) \\ \vdots \\\bar{q}(0.90) \\ \bar{q}(0.95) \end{pmatrix}
 $$
-Here we've used the mean to average the quantiles. The median might also be used.
+Here we've used the mean to average the quantiles. The median of the quantiles might also be used.
 
 The method is great for "forecasting hubs". Lots of public health agencies allow modelling teams to submit there own forecasts of a epidemic as a collection of quantiles, then the hub aggregates the submitted predictions and outputs ensemble. For example, the US's CDC had a [COVID-19 forecasting hub](https://covid19forecasthub.org/). It's an efficient way to construct ensembles, however, the mean of a collection of quantiles is not the same as the "true" quantile of the ensemble.
 
@@ -196,7 +196,7 @@ fitted_model <- mgcv::gam(
   family = "nb"
 )
 ```
-where `t_numeric` is our time variable, `country_code` is a factor representing the country, `transformed_lengthscale` is a hyperparameter of our GP and `input_data` is our data used to fit the model. This correpsonds to a model with only regional smooths (so no $s(t)$) term.
+where `t_numeric` is our time variable, `country_code` is a factor representing the country, `transformed_lengthscale` is a hyperparameter of our GP and `input_data` is our data used to fit the model. This corresponds to a model with only regional smooths (so no $s(t)$) term.
 
 I'm not going to walk through all the other models I build for this analysis, but they're GAMs with different approaches to smoothing. You can investigate the model details [here](https://github.com/jcken95/unidentified-forecasting-object/tree/main/models).
 
@@ -221,7 +221,7 @@ example_model <- function(input_data, prediction_length, training_length) {
 
 In my models, the columns are
 
- * `.row` a "spine" for interal modelling
+ * `.row` a "spine" for internal modelling
  * `.draw` an ID for the posterior sample draw
  * `.reponse` the predicted value (for that sample-location-time combination)
  * `month_year` the date
@@ -236,7 +236,10 @@ This consistency means my model post-processing and ensembling is fairly straigh
 
 ### Fitting the ensemble
 
-The following collapsed snippet reads all the models in straight from my github repo - ideally I'd wrap this all up in a paclage or something but this is quick and easy. I wouldn't advise running `source()` on any old files off the internet normally. I'm also going to store all my model functions in a list for a neat functional-programming approach to model fitting later.
+The following collapsed snippet reads all the models in straight from my github repo - ideally I'd wrap this all up in a package or something but this is quick and easy. I wouldn't advise running `source()` on any old files off the internet normally. I'm also going to store all my model functions in a list for a neat functional-programming approach to model fitting later.
+
+I will have an ensemble based on four models. GAMs with the following smoothers: Gaussian process, thin plate splines, cubic regression splines and p splines.
+
 ```{r}
 #| label: read-models
 #| message: false
@@ -294,7 +297,7 @@ forecast_horizon <- 24
 gp_fit <- gaussian_process(fit_data, forecast_horizon)
 ```
 
-And then let's make a quick plot to check the forecasts. We will plot the median, 50% and 90% predictive quangtiles against "future" values
+And then let's make a quick plot to check the forecasts. We will plot the median, 50% and 90% predictive quantiles against "future" values
 
 ```{r}
 #| label: check-gp
@@ -352,7 +355,7 @@ By and large, we've made a good little set of forecasts here based off one model
 
 Now we've built a single-model forecast, we want to scale up to an ensemble-based workflow. I'm going to use the {purrr} package and a neat little trick to generate our ensemble with (excluding the model functions themselves), just two function calls!
 
-If you're not familiar with {purrr}, `purrr:map()` lets us iterate over elements of a list, it's basically an implementation of a `for` loop or reframing of `apply()` type functions. Remember earlier I stored all my model functions in a named list called `models`? Well I can `purrr::map()` over these models and stack all the results in a data frame to create our ensemble. I'd used `map()` a lot in the past to iterate over data (e.g. apply the same functions to different data sets), but the first time I saw the inverse: apply different functions to the same data I thought that was actually pretty cool.
+If you're not familiar with {purrr}, `purrr:map()` lets us iterate over elements of a list, it's basically an implementation of a `for` loop or reframing of `apply()` type functions. Remember earlier I stored all my model functions in a named list called `models`? Well I can `purrr::map()` over these models and stack all the results in a data frame to create our ensemble. I'd used `purrr::map()` a lot in the past to iterate over data (e.g. apply the same functions to different data sets), but the first time I saw the inverse: apply different functions to the same data I thought that was actually pretty cool.
 
 ```{r}
 #| label: fit-ensemble
@@ -402,7 +405,7 @@ ensemble_summary |>
   ggplot2::geom_point(
     data = fit_data,
     mapping = ggplot2::aes(x = month_year, y = sightings_month), size = 0.1) +
-  ggplot2::facet_wrap(~country_code, scale = "free_y", ncol = 1) +
+  ggplot2::facet_grid(ggplot2::vars(country_code), scale = "free_y") +
   ggplot2::scale_fill_manual(values = plot_colours) +
   ggplot2::scale_colour_manual(values = plot_colours) +
   ggplot2::theme_minimal() +
