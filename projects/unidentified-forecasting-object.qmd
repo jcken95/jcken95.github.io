@@ -10,7 +10,6 @@
   about:
     template: marquee
   image: img/forecast.png
-  
 ---
 
 
