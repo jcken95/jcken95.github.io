@@ -9,6 +9,8 @@
   date: 2026-11-16
   about:
     template: marquee
+  image: img/forecast.png
+  
 ---
 
 
