@@ -176,7 +176,7 @@ window.Quarto = {
 
 <meta name="twitter:title" content="Unidentified forecasting object – Jack Kennedy">
 <meta name="twitter:description" content="Using epidemiological forecasting methods to predict the number of reported UFO sightings">
-<meta name="twitter:image" content="img/forecast.png">
+<meta name="twitter:image" content="https://jcken95.github.io/projects/img/forecast.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -1761,7 +1761,7 @@ y(t, r) \sim \text{NegBin}(\mu(t, r), \varphi)
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/jcken95\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
